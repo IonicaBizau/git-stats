@@ -1,2 +1,22 @@
 #!/usr/bin/env node
 
+var GitStats = require("../lib");
+
+switch (process.argv[2]) {
+    case "--record":
+        var data = process.argv[3];
+        try {
+            data = JSON.parse(data);
+        } catch (e) {
+            throw e;
+        }
+        GitStats.record(data, function (err) {
+            if (err) { throw err; }
+        });
+        break;
+    default:
+        GitStats.get(function (err, data) {
+            console.log(err || data);
+        });
+        break;
+}
