@@ -6,6 +6,6 @@
   "scripts": {
     "test": "node test"
   },
-  "author": "",
+  "author": "Ionică Bizău <bizauionica@gmail.com>",
   "license": "MIT"
 }
