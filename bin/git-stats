@@ -17,7 +17,10 @@ switch (process.argv[2]) {
         break;
     case "--help":
         // TODO
-        console.log("git-stats");
+        console.log(
+            "git-stats"
+        + "\nA GitHub-like contributions calendar, but locally, with all your git commits."
+        );
         break;
     default:
         GitStats.get(function (err, data) {
