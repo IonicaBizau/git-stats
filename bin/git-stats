@@ -20,6 +20,7 @@ switch (process.argv[2]) {
         console.log(
             "git-stats"
         + "\nA GitHub-like contributions calendar, but locally, with all your git commits."
+        + "\n"
         );
         break;
     default:
