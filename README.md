@@ -2,40 +2,29 @@
 A GitHub-like contributions calendar, but locally, with all your git commits.
 
 ## Installation
-Run the following commands to download and install the application:
 
 ```sh
-$ git clone https://github.com/IonicaBizau/git-stats.git git-stats
-$ cd git-stats
-$ npm install
+$ npm install -g git-stats
 ```
 
 ## Documentation
 ## `record(data, callback)`
 Records a new commit.
 
-### Params 
-- **Object** `data`: The commit data containing: 
+### Params
+- **Object** `data`: The commit data containing:
  - `date` (String|Date): The date object or a string in this format: `DDD MMM dd HH:mm:ss YYYY`
  - `url` (String): The repository remote url.
  - `hash` (String): The commit hash.
 
 - **Function** `callback`: The callback function.
 
-### Return
-- **** 
-
 ## `get(data, callback)`
 Gets the git stats.
 
-### Params 
+### Params
 - **Object** `data`: The stats filter. **Not yet implemented**.
 - **Function** `callback`: The callback function.
-
-### Return
-- **** 
-
-
 
 ## How to contribute
 
