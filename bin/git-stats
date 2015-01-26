@@ -15,6 +15,9 @@ switch (process.argv[2]) {
             if (err) { throw err; }
         });
         break;
+    case "--help":
+        // TODO
+        break;
     default:
         GitStats.get(function (err, data) {
             console.log(err || data);
