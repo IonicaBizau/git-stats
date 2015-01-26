@@ -3,10 +3,32 @@
   "version": "1.0.0-alpha",
   "description": "A GitHub-like contributions calendar, but locally, with all your git commits.",
   "main": "index.js",
-  "bin": "./bin/git-stats",
+  "bin": {
+    "git-stats": "./bin/git-stats"
+  },
   "scripts": {
     "test": "node test"
   },
   "author": "Ionică Bizău <bizauionica@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^0.15.0",
+    "moment": "^2.9.0",
+    "ul": "^1.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IonicaBizau/git-stats.git"
+  },
+  "keywords": [
+    "git",
+    "stats",
+    "github",
+    "cli"
+  ],
+  "bugs": {
+    "url": "https://github.com/IonicaBizau/git-stats/issues"
+  },
+  "homepage": "https://github.com/IonicaBizau/git-stats"
 }
