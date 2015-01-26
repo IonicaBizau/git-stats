@@ -5,7 +5,6 @@ var GitStats = require("../lib");
 switch (process.argv[2]) {
     case "--record":
         var data = process.argv[3];
-    debugger
         console.log(data);
         try {
             data = JSON.parse(data);
