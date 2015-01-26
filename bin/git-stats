@@ -4,7 +4,7 @@ var GitStats = require("../lib");
 
 switch (process.argv[2]) {
     case "--record":
-        var data = process.argv[3];
+        var data = process.argv[3].replace(/^\"|\"$/g, "");
         console.log(data);
         try {
             data = JSON.parse(data);
