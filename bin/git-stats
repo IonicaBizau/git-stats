@@ -23,7 +23,7 @@ switch (process.argv[2]) {
         );
         break;
     default:
-        GitStats.graph({}, function (err, data) {
+        GitStats.ansiCalendar(function (err, data) {
             console.log(err || data);
         });
         break;
