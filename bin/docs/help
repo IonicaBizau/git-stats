@@ -1,0 +1,21 @@
+git-stats --help
+A GitHub-like contributions calendar, but locally, with all your git commits.
+
+usage: git-stats [command] [data]
+
+options:
+  -v                      Displays version information.
+  -h --help               Displays this help.
+  --no-ansi               Doesn't use ANSI colors in the squares.
+  --record <data>         Records a new commit. Don't use this unless you are
+                          a mad scientist. If you are a developer, just use this
+                          option as part of the module.
+
+examples:
+   git-stats # Displays your commit calendar
+   git-stats -v
+   git-stats -h
+
+Your commit history is keept in the .git-stats, in your $HOME directory (~/)
+
+Documentation can be found at https://github.com/IonicaBizau/git-stats
