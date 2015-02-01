@@ -10,11 +10,13 @@ options:
   --record <data>         Records a new commit. Don't use this unless you are
                           a mad scientist. If you are a developer, just use this
                           option as part of the module.
+  --light                 Enable the light theme.
 
 examples:
    git-stats # Displays your commit calendar
    git-stats -v
    git-stats -h
+   git-stats --light # Light mode
 
 Your commit history is keept in the .git-stats, in your $HOME directory (~/)
 
