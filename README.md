@@ -7,11 +7,43 @@ A GitHub-like contributions calendar, but locally, with all your git commits.
 $ npm install -g git-stats
 ```
 
+Then put the following lines in your `~/.bashrc` file:
+
+```sh
+git() {
+  cmd=$1
+  shift
+  extra=""
+
+  quoted_args=""
+  whitespace="[[:space:]]"
+  for i in "$@"
+  do
+      quoted_args="$quoted_args \"$i\""
+  done
+
+  cmdToRun="`which git` "$cmd" $quoted_args"
+  cmdToRun=`echo $cmdToRun | sed -e 's/^ *//' -e 's/ *$//'`
+  bash -c "$cmdToRun"
+  if [ $? -eq 0 ]; then
+    # Commit stats
+    if [ "$cmd" == "commit" ]; then
+      commit_hash=`git rev-parse HEAD`
+      repo_url=`git config --get remote.origin.url`
+      commit_date=`git log -1 --format=%cd`
+      commit_data="\"{ \"date\": \"$commit_date\", \"url\": \"$repo_url\", \"hash\": \"$commit_hash\" }\""
+      git-stats --record "$commit_data"
+    fi
+  fi
+}
+```
+
+
 ## Documentation
-## `record(data, callback)`
+### `record(data, callback)`
 Records a new commit.
 
-### Params
+#### Params
 - **Object** `data`: The commit data containing:
  - `date` (String|Date): The date object or a string in this format: `DDD MMM dd HH:mm:ss YYYY`
  - `url` (String): The repository remote url.
@@ -19,10 +51,10 @@ Records a new commit.
 
 - **Function** `callback`: The callback function.
 
-## `get(data, callback)`
+### `get(data, callback)`
 Gets the git stats.
 
-### Params
+#### Params
 - **Object** `data`: The stats filter. **Not yet implemented**.
 - **Function** `callback`: The callback function.
 
