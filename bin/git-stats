@@ -7,12 +7,29 @@ var GitStats = require("../lib")
   , Couleurs = require("couleurs")()
   ;
 
-const SQUARES = {
-    "⬚": Couleurs.fg("⬚", "#eee")
-  , "▢": Couleurs.fg("▢", "#eee")
-  , "▤": Couleurs.fg("▤", "#8cc665")
-  , "▣": Couleurs.fg("▣", "#44a340")
-  , "⬛": Couleurs.fg("▣", "#1e6823")
+const THEMES = {
+    DARK: {
+      background: "#11181F"
+    , foreground: "#565656"
+    , squares: {
+        "⬚": Couleurs.fg("▣", "#565656")
+      , "▢": Couleurs.fg("▣", "#00B346")
+      , "▤": Couleurs.fg("▣", "#009139")
+      , "▣": Couleurs.fg("▣", "#15763b")
+      , "⬛": Couleurs.fg("▣", "#005220")
+      }
+    }
+  , LIGHT: {
+      background: "#ffffff"
+    , foreground: "#565656"
+    , squares: {
+        "⬚": Couleurs.fg("▣", "#C2C2C2")
+      , "▢": Couleurs.fg("▣", "#00B346")
+      , "▤": Couleurs.fg("▣", "#009139")
+      , "▣": Couleurs.fg("▣", "#15763b")
+      , "⬛": Couleurs.fg("▣", "#005220")
+      }
+    }
 };
 
 // CLI options
@@ -36,10 +53,38 @@ switch (process.argv[2]) {
         break;
     default:
         GitStats.ansiCalendar(function (err, data) {
-            console.log(err || data);
-            if (process.argv.indexOf("--no-ansi") !== -1) {
+            if (err) throw err;
+            data = AnsiParser.removeAnsi(data);
+            if (process.argv.indexOf("--no-ansi") === -1) {
+                var theme = THEMES.LIGHT
+                  , parsed = AnsiParser.parse(data)
+                  , i = 0
+                  , c = null
+                  , sq = Object.keys(theme.squares)
+                  ;
 
+                data = data.replace(/╝|╗/gm, "═$&")
+                data = data.replace(/║$/gm, " $&")
+                if (process.argv.indexOf("--dark") !== -1) {
+                    theme = THEMES.DARK;
+                }
+
+                data = data.split("");
+                for (; i < data.length; ++i) {
+                    c = data[i];
+                    if (sq.indexOf(c) !== -1) {
+                        data[i] = theme.squares[c];
+                    } else if (/^(╔|═|╗|║|╝|═|╚|║|\-|\:|[a-z]|[0-9])$/i.test(c)) {
+                        data[i] = Couleurs.fg(c, theme.foreground);
+                    }
+                }
+
+                data = data.join("").split("\n").map(function (c) {
+                    return Couleurs.bg(c, theme.background)
+                }).join("\n")
             }
+
+            console.log(err || data);
         });
         break;
 }
