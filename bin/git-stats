@@ -56,7 +56,7 @@ switch (process.argv[2]) {
             if (err) throw err;
             data = AnsiParser.removeAnsi(data);
             if (process.argv.indexOf("--no-ansi") === -1) {
-                var theme = THEMES.LIGHT
+                var theme = THEMES.DARK
                   , parsed = AnsiParser.parse(data)
                   , i = 0
                   , c = null
@@ -65,8 +65,8 @@ switch (process.argv[2]) {
 
                 data = data.replace(/╝|╗/gm, "═$&")
                 data = data.replace(/║$/gm, " $&")
-                if (process.argv.indexOf("--dark") !== -1) {
-                    theme = THEMES.DARK;
+                if (process.argv.indexOf("--light") !== -1) {
+                    theme = THEMES.LIGHT;
                 }
 
                 data = data.split("");
