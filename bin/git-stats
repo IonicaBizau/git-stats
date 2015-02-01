@@ -87,7 +87,7 @@ switch (process.argv[2]) {
                     return Couleurs.bg(c, theme.background)
                 });
 
-                data.splice(data.length - 2, 1);
+                //data.splice(data.length - 2, 1);
                 data = data.join("\n")
             }
 
