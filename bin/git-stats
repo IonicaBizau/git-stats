@@ -16,22 +16,22 @@ const THEMES = {
       background: "#11181F"
     , foreground: "#565656"
     , squares: {
-        "⬚": Couleurs.fg("▣", "#565656")
-      , "▢": Couleurs.fg("▣", "#00B346")
-      , "▤": Couleurs.fg("▣", "#009139")
-      , "▣": Couleurs.fg("▣", "#15763b")
-      , "⬛": Couleurs.fg("▣", "#005220")
+        "⬚": Couleurs.fg("■", "#343434")
+      , "▢": Couleurs.fg("■", "#2e643d")
+      , "▤": Couleurs.fg("■", "#589f43")
+      , "▣": Couleurs.fg("■", "#98bc21")
+      , "■": Couleurs.fg("■", "#b9fc04")
       }
     }
   , LIGHT: {
       background: "#ffffff"
     , foreground: "#565656"
     , squares: {
-        "⬚": Couleurs.fg("▣", "#C2C2C2")
-      , "▢": Couleurs.fg("▣", "#00B346")
-      , "▤": Couleurs.fg("▣", "#009139")
-      , "▣": Couleurs.fg("▣", "#15763b")
-      , "⬛": Couleurs.fg("▣", "#005220")
+        "⬚": Couleurs.fg("■", "#C2C2C2")
+      , "▢": Couleurs.fg("■", "#b9edcd")
+      , "▤": Couleurs.fg("■", "#009139")
+      , "▣": Couleurs.fg("■", "#15763b")
+      , "■": Couleurs.fg("■", "#096a2f")
       }
     }
 };
