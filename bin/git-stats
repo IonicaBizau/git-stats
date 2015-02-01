@@ -78,14 +78,17 @@ switch (process.argv[2]) {
                     c = data[i];
                     if (sq.indexOf(c) !== -1) {
                         data[i] = theme.squares[c];
-                    } else if (/^(╔|═|╗|║|╝|═|╚|║|\-|\:|[a-z]|[0-9])$/i.test(c)) {
+                    } else if (/^(╔|═|╗|║|╝|═|╚|║|\-|\:|\||[a-z]|[0-9])$/i.test(c)) {
                         data[i] = Couleurs.fg(c, theme.foreground);
                     }
                 }
 
                 data = data.join("").split("\n").map(function (c) {
                     return Couleurs.bg(c, theme.background)
-                }).join("\n")
+                });
+
+                data.splice(data.length - 2, 1);
+                data = data.join("\n")
             }
 
             console.log(err || data);
