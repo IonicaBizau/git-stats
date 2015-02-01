@@ -3,7 +3,17 @@
 // Dependencies
 var GitStats = require("../lib")
   , Fs = require("fs")
+  , AnsiParser = require("ansi-parser")
+  , Couleurs = require("couleurs")()
   ;
+
+const SQUARES = {
+    "⬚": Couleurs.fg("⬚", "#eee")
+  , "▢": Couleurs.fg("▢", "#eee")
+  , "▤": Couleurs.fg("▤", "#8cc665")
+  , "▣": Couleurs.fg("▣", "#44a340")
+  , "⬛": Couleurs.fg("▣", "#1e6823")
+};
 
 // CLI options
 switch (process.argv[2]) {
@@ -27,6 +37,9 @@ switch (process.argv[2]) {
     default:
         GitStats.ansiCalendar(function (err, data) {
             console.log(err || data);
+            if (process.argv.indexOf("--no-ansi") !== -1) {
+
+            }
         });
         break;
 }
