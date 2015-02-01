@@ -5,7 +5,11 @@ var GitStats = require("../lib")
   , Fs = require("fs")
   , AnsiParser = require("ansi-parser")
   , Couleurs = require("couleurs")()
+  , Logger = require("bug-killer")
   ;
+
+Logger.config.displayDate = false;
+Logger.config.logLevel = 4;
 
 const THEMES = {
     DARK: {
@@ -42,18 +46,18 @@ switch (process.argv[2]) {
             throw e;
         }
         GitStats.record(data, function (err) {
-            if (err) { throw err; }
+            if (err) { return Logger.log(err, "error"); }
         });
         break;
     case "--help":
-        console.log(Fs.readFileSync("./docs/help"));
+        console.log(Fs.readFileSync("./docs/help", "utf-8"));
         break;
     case "-v":
         console.log(require("../package.json").version);
         break;
     default:
         GitStats.ansiCalendar(function (err, data) {
-            if (err) throw err;
+            if (err) { return Logger.log(err, "error"); }
             data = AnsiParser.removeAnsi(data);
             if (process.argv.indexOf("--no-ansi") === -1) {
                 var theme = THEMES.DARK
