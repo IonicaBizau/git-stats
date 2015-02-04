@@ -8,9 +8,11 @@ var GitStats = require("../lib")
   , Logger = require("bug-killer")
   ;
 
+// Configure logger
 Logger.config.displayDate = false;
 Logger.config.logLevel = 4;
 
+// Constants
 const THEMES = {
     DARK: {
       background: "#11181F"
@@ -50,7 +52,7 @@ switch (process.argv[2]) {
         });
         break;
     case "--help":
-        console.log(Fs.readFileSync("./docs/help", "utf-8"));
+        console.log(Fs.readFileSync(__dirname + "/docs/help", "utf-8"));
         break;
     case "-v":
         console.log(require("../package.json").version);
