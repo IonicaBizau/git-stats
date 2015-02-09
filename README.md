@@ -42,7 +42,11 @@ git() {
 }
 ```
 
+## Usage
+
 ## Documentation
+If you want to use this as module, this is possible. See the content below.
+
 ### `record(data, callback)`
 Records a new commit.
 
