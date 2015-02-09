@@ -9,11 +9,10 @@ var GitStats = require("../lib")
   , GitStatsColors = require("git-stats-colors")
   ;
 
-// Configure logger
+// Configurations
 Logger.config.displayDate = false;
 Logger.config.logLevel = 4;
-
-// Constants
+Moment.suppressDeprecationWarnings = true;
 
 // CLI options
 switch (process.argv[2]) {
@@ -35,19 +34,25 @@ switch (process.argv[2]) {
         console.log(require("../package.json").version);
         break;
     default:
-        var options = {
-            start: Moment().subtract(1, "years")
-          , end: Moment()
-        };
+        var options = {};
 
         if (process.argv.length !== 2) {
             if (process.argv[2]) {
                 options.start = Moment(process.argv[2]);
+
             }
 
             if (process.argv[3]) {
                 options.end = Moment(process.argv[3]);
             }
+        }
+
+        if (!options.start || !options.start.isValid()) {
+            options.start = Moment().subtract(1, "years");
+        }
+
+        if (!options.end || !options.end.isValid()) {
+            options.end = Moment();
         }
 
         GitStats.ansiCalendar(options, function (err, data) {
