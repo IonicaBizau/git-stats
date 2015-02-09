@@ -5,8 +5,8 @@ var GitStats = require("../lib")
   , Moment = require("moment")
   , Fs = require("fs")
   , AnsiParser = require("ansi-parser")
-  , Couleurs = require("couleurs")()
   , Logger = require("bug-killer")
+  , GitStatsColors = require("git-stats-colors")
   ;
 
 // Configure logger
@@ -14,30 +14,6 @@ Logger.config.displayDate = false;
 Logger.config.logLevel = 4;
 
 // Constants
-const THEMES = {
-    DARK: {
-      background: "#11181F"
-    , foreground: "#565656"
-    , squares: {
-        "⬚": Couleurs.fg("■", "#343434")
-      , "▢": Couleurs.fg("■", "#2e643d")
-      , "▤": Couleurs.fg("■", "#589f43")
-      , "▣": Couleurs.fg("■", "#98bc21")
-      , "■": Couleurs.fg("■", "#b9fc04")
-      }
-    }
-  , LIGHT: {
-      background: "#ffffff"
-    , foreground: "#565656"
-    , squares: {
-        "⬚": Couleurs.fg("■", "#C2C2C2")
-      , "▢": Couleurs.fg("■", "#b9edcd")
-      , "▤": Couleurs.fg("■", "#009139")
-      , "▣": Couleurs.fg("■", "#15763b")
-      , "■": Couleurs.fg("■", "#096a2f")
-      }
-    }
-};
 
 // CLI options
 switch (process.argv[2]) {
@@ -78,35 +54,7 @@ switch (process.argv[2]) {
             if (err) { return Logger.log(err, "error"); }
             data = AnsiParser.removeAnsi(data);
             if (process.argv.indexOf("--no-ansi") === -1) {
-                var theme = THEMES.DARK
-                  , parsed = AnsiParser.parse(data)
-                  , i = 0
-                  , c = null
-                  , sq = Object.keys(theme.squares)
-                  ;
-
-                data = data.replace(/╝|╗/gm, "═$&")
-                data = data.replace(/║$/gm, " $&")
-                if (process.argv.indexOf("--light") !== -1) {
-                    theme = THEMES.LIGHT;
-                }
-
-                data = data.split("");
-                for (; i < data.length; ++i) {
-                    c = data[i];
-                    if (sq.indexOf(c) !== -1) {
-                        data[i] = theme.squares[c];
-                    } else if (/^(╔|═|╗|║|╝|═|╚|║|\-|\:|\||[a-z]|[0-9])$/i.test(c)) {
-                        data[i] = Couleurs.fg(c, theme.foreground);
-                    }
-                }
-
-                data = data.join("").split("\n").map(function (c) {
-                    return Couleurs.bg(c, theme.background)
-                });
-
-                //data.splice(data.length - 2, 1);
-                data = data.join("\n")
+                data = GitStatsColors(data, process.argv.indexOf("--light") !== -1 ? "LIGHT": "DARK");
             }
 
             console.log(err || data);
