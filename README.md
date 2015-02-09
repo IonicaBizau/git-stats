@@ -84,7 +84,7 @@ If you overriden the `git` command with a function, then your commits will be au
 
 ### Importing and deleting commits
 I know it's not nice to start from scratch your git commit calendar. That's why I
-created a `git-stats` importer, that imports or deletes the commits from a repository.
+created a `git-stats-importer`, that imports or deletes the commits from a repository.
 
 Check it out here: https://github.com/IonicaBizau/git-stats-importer
 
