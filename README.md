@@ -2,7 +2,7 @@
 # `$ git-stats`
 A GitHub-like contributions calendar, but locally, with all your git commits.
 
-BTW, these are all my real commits in the last year.
+These are all real commits from the last year.
 
 ![](http://i.imgur.com/LfLJAaE.png)
 
@@ -12,7 +12,7 @@ $ npm install -g git-stats
 ```
 
 ### Catching the `git commit` command
-Would you like to catch store automatically the commits when you do `git commit`?
+Would you like to catch and automatically store the commits when you do `git commit`?
 
 If so, put the following lines in your `~/.bashrc` (or `~/.bash_profile` on OS X) file:
 
@@ -75,16 +75,16 @@ examples:
    git-stats '1 January 2012' # All the commits from 1 January 2012, to now
    git-stats '1 January 2012' '31 December 2012' # All the commits from 2012
 
-Your commit history is keept in the .git-stats, in your $HOME directory (~/)
+Your commit history is kept in the .git-stats, in your $HOME directory (~/)
 
 Documentation can be found at https://github.com/IonicaBizau/git-stats
 ```
 
-If you overriden the `git` command with a function, then your commits will be automatically recorded.
+If you override the `git` command with a function, then your commits will be automatically recorded.
 
 ### Importing and deleting commits
-I know it's not nice to start from scratch your git commit calendar. That's why I
-created a `git-stats-importer`, that imports or deletes the commits from a repository.
+I know it's not nice to start your git commit calendar from scratch. That's why I
+created a `git-stats-importer` that imports or deletes the commits from a repository.
 
 Check it out here: https://github.com/IonicaBizau/git-stats-importer
 
@@ -105,7 +105,7 @@ $ git-stats-importer --delete
 ```
 
 ### Importing all the commits from GitHub and BitBucket
-Yes, you read correctly! That's also possible. I [build a tool for that too](https://github.com/IonicaBizau/repository-downloader)!
+Yes, you read correctly! That's also possible. I [built a tool for that too](https://github.com/IonicaBizau/repository-downloader)!
 
 ```sh
 # Download the repository downloader
@@ -132,11 +132,11 @@ $ npm install -g ghcal
 $ ghcal ionicabizau
 ```
 
-Fore more detailed documentation checkout the repository: https://github.com/IonicaBizau/ghcal.
+Fore more detailed documentation, check out the repository: https://github.com/IonicaBizau/ghcal.
 
 
 ## Documentation
-If you want to use this as module, this is possible. See the content below.
+If you want to use this as a module, that is possible. See the content below.
 
 ### `record(data, callback)`
 Records a new commit.
