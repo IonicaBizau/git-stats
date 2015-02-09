@@ -44,6 +44,79 @@ git() {
 
 ## Usage
 
+```sh
+$ git-stats --help
+git-stats --help
+A GitHub-like contributions calendar, but locally, with all your git commits.
+
+usage: git-stats [start] [end] [options] [data]
+
+start:                    Optional start date
+end:                      Optional end date
+
+options:
+  -v                      Displays version information.
+  -h --help               Displays this help.
+  --no-ansi               Doesn't use ANSI colors in the squares.
+  --record <data>         Records a new commit. Don't use this unless you are
+                          a mad scientist. If you are a developer, just use this
+                          option as part of the module.
+  --light                 Enable the light theme.
+
+examples:
+   git-stats # Displays your commit calendar
+   git-stats -v
+   git-stats -h
+   git-stats --light # Light mode
+   git-stats '1 January 2012' # All the commits from 1 January 2012, to now
+   git-stats '1 January 2012' '31 December 2012' # All the commits from 2012
+
+Your commit history is keept in the .git-stats, in your $HOME directory (~/)
+
+Documentation can be found at https://github.com/IonicaBizau/git-stats
+```
+
+If you overriden the `git` command with a function, then your commits will be automatically recorded.
+
+### Importing and deleting commits
+I know it's not nice to start from scratch your git commit calendar. That's why I
+created a `git-stats` importer, that imports or deletes the commits from a repository.
+
+Check it out here: https://github.com/IonicaBizau/git-stats-importer
+
+The usage is simple:
+
+```sh
+# Install the importer tool
+$ npm install -g git-stats-importer
+
+# Go to the repository you want to import
+$ cd path/to/my-repository
+
+# Import the commits
+$ git-stats-importer
+
+# ...or delete them if that's a dummy repository
+$ git-stats-importer --delete
+```
+
+### Importing all the commits from GitHub and BitBucket
+Yes, you read correctly! That's also possible.
+
+```sh
+# Download the repository downloader
+$ git clone git@github.com:IonicaBizau/repository-downloader.git
+
+# Go to repository downloader
+$ cd repository-downloader
+
+# Install the dependencies
+$ npm install
+
+# Start downloading and importing
+$ ./start
+```
+
 ## Documentation
 If you want to use this as module, this is possible. See the content below.
 
