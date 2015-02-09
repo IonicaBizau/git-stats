@@ -11,11 +11,6 @@
   },
   "author": "Ionică Bizău <bizauionica@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "fs-extra": "^0.15.0",
-    "moment": "^2.9.0",
-    "ul": "^1.1.0"
-  },
   "devDependencies": {},
   "repository": {
     "type": "git",
@@ -30,5 +25,13 @@
   "bugs": {
     "url": "https://github.com/IonicaBizau/git-stats/issues"
   },
-  "homepage": "https://github.com/IonicaBizau/git-stats"
+  "homepage": "https://github.com/IonicaBizau/git-stats",
+  "dependencies": {
+    "ansi-parser": "^1.4.0",
+    "cli-box": "^2.1.1",
+    "bug-killer": "^1.0.0",
+    "git-stats-colors": "^1.0.0",
+    "moment": "^2.9.0",
+    "ul": "^1.1.0"
+  }
 }
