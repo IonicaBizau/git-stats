@@ -1,7 +1,10 @@
 git-stats --help
 A GitHub-like contributions calendar, but locally, with all your git commits.
 
-usage: git-stats [command] [data]
+usage: git-stats [start] [end] [options] [data]
+
+start:                    Optional start date
+end:                      Optional end date
 
 options:
   -v                      Displays version information.
@@ -17,6 +20,8 @@ examples:
    git-stats -v
    git-stats -h
    git-stats --light # Light mode
+   git-stats '1 January 2012' # All the commits from 1 January 2012, to now
+   git-stats '1 January 2012' '31 December 2012' # All the commits from 2012
 
 Your commit history is keept in the .git-stats, in your $HOME directory (~/)
 
