@@ -2,8 +2,11 @@
 # `$ git-stats`
 A GitHub-like contributions calendar, but locally, with all your git commits.
 
-## Installation
+BTW, these are my all my real commits in the last year.
 
+![](http://i.imgur.com/LfLJAaE.png)
+
+## Installation
 ```sh
 $ npm install -g git-stats
 ```
@@ -117,6 +120,20 @@ $ npm install
 # Start downloading and importing
 $ ./start
 ```
+
+### See the GitHub Contributions calendar
+There is a solution for that, too! :smile: It's called [`ghcal`](https://github.com/IonicaBizau/ghcal).
+
+```sh
+# Install ghcal
+$ npm install -g ghcal
+
+# Checkout my contributions
+$ ghcal ionicabizau
+```
+
+Fore more detailed documentation checkout the repository: https://github.com/IonicaBizau/ghcal.
+
 
 ## Documentation
 If you want to use this as module, this is possible. See the content below.
