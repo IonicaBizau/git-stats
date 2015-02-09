@@ -7,9 +7,13 @@ A GitHub-like contributions calendar, but locally, with all your git commits.
 $ npm install -g git-stats
 ```
 
-Then put the following lines in your `~/.bashrc` file:
+### Catching the `git commit` command
+Would you like to catch store automatically the commits when you do `git commit`?
+
+If so, put the following lines in your `~/.bashrc` (or `~/.bash_profile` on OS X) file:
 
 ```sh
+# Override the Git command
 git() {
   cmd=$1
   shift
@@ -37,7 +41,6 @@ git() {
   fi
 }
 ```
-
 
 ## Documentation
 ### `record(data, callback)`
