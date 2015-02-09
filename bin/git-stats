@@ -2,6 +2,7 @@
 
 // Dependencies
 var GitStats = require("../lib")
+  , Moment = require("moment")
   , Fs = require("fs")
   , AnsiParser = require("ansi-parser")
   , Couleurs = require("couleurs")()
@@ -58,7 +59,22 @@ switch (process.argv[2]) {
         console.log(require("../package.json").version);
         break;
     default:
-        GitStats.ansiCalendar(function (err, data) {
+        var options = {
+            start: Moment().subtract(1, "years")
+          , end: Moment()
+        };
+
+        if (process.argv.length !== 2) {
+            if (process.argv[2]) {
+                options.start = Moment(process.argv[2]);
+            }
+
+            if (process.argv[3]) {
+                options.end = Moment(process.argv[3]);
+            }
+        }
+
+        GitStats.ansiCalendar(options, function (err, data) {
             if (err) { return Logger.log(err, "error"); }
             data = AnsiParser.removeAnsi(data);
             if (process.argv.indexOf("--no-ansi") === -1) {
