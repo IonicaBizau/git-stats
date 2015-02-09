@@ -125,18 +125,78 @@ Records a new commit.
 
 #### Params
 - **Object** `data`: The commit data containing:
- - `date` (String|Date): The date object or a string in this format: `DDD MMM dd HH:mm:ss YYYY`
+ - `date` (String|Date): The date object or a string in a format that can be parsed.
  - `url` (String): The repository remote url.
  - `hash` (String): The commit hash.
 
 - **Function** `callback`: The callback function.
 
-### `get(data, callback)`
+#### Return
+- **GitStats** The `GitStats` object.
+
+### `get(callback)`
 Gets the git stats.
 
 #### Params
-- **Object** `data`: The stats filter. **Not yet implemented**.
 - **Function** `callback`: The callback function.
+
+#### Return
+- **GitStats** The `GitStats` object.
+
+### `save(stats, callback)`
+Saves the provided stats.
+
+#### Params
+- **Object** `stats`: The stats to be saved.
+- **Function** `callback`: The callback function.
+
+#### Return
+- **GitStats** The `GitStats` object.
+
+### `iterateDays(data, callback)`
+Iterate the days, calling the callback function for each day.
+
+#### Params
+- **Object** `data`: An object containing the following fields:
+ - `start` (Moment): A `Moment` date object representing the start date (default: *an year ago*).
+ - `end` (Moment): A `Moment` date object representing the end date (default: *now*).
+ - `format` (String): The format of the date (default: `"MMM D, YYYY"`).
+
+- **Function** `callback`: The callback function called with the current day formatted (type: string) and the `Moment` date object.
+
+#### Return
+- **GitStats** The `GitStats` object.
+
+### `graph(data, callback)`
+Creates an object with the stats on the provided period (default: *last year*).
+
+#### Params
+- **Object** `data`: The object passed to the `iterateDays` method.
+- **Function** `callback`: The callback function.
+
+#### Return
+- **GitStats** The `GitStats` object.
+
+### `calendar(data, callback)`
+Creates the calendar data for the provided period (default: *last year*).
+
+#### Params
+- **Object** `data`: The object passed to the `graph` method.
+- **Function** `callback`: The callback function.
+
+#### Return
+- **GitStats** The `GitStats` object.
+
+### `ansiCalendar(data, callback)`
+Creates the ANSI contributions calendar.
+
+#### Params
+- **Object** `data`: The object passed to the `calendar` method.
+- **Function** `callback`: The callback function.
+
+#### Return
+- **GitStats** The `GitStats` object.
+
 
 ## How to contribute
 
