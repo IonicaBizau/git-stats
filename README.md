@@ -1,4 +1,5 @@
-# git-stats
+![](http://i.imgur.com/Q7TQYHx.png)
+# `$ git-stats`
 A GitHub-like contributions calendar, but locally, with all your git commits.
 
 ## Installation
@@ -101,7 +102,7 @@ $ git-stats-importer --delete
 ```
 
 ### Importing all the commits from GitHub and BitBucket
-Yes, you read correctly! That's also possible.
+Yes, you read correctly! That's also possible. I [build a tool for that too](https://github.com/IonicaBizau/repository-downloader)!
 
 ```sh
 # Download the repository downloader
