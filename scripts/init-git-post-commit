@@ -1,0 +1,11 @@
+#!/bin/sh
+
+git config --global init.templatedir '~/.git-templates'
+mkdir -p ~/.git-templates/hooks
+
+cat << EOF > ~/.bat/logo.svg
+#!/bin/sh
+
+# Copy last commit hash to clipboard on commit
+echo 'POST COMMIT'
+EOF
