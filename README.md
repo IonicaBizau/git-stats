@@ -135,7 +135,8 @@ $ ghcal ionicabizau
 Fore more detailed documentation, check out the repository: https://github.com/IonicaBizau/ghcal.
 
 
-## Documentation
+## Documentation [![Inline docs](http://inch-ci.org/github/IonicaBizau/git-stats.svg?branch=master)](http://inch-ci.org/github/IonicaBizau/git-stats)
+
 If you want to use this as a module, that is possible. See the content below.
 
 ### `record(data, callback)`
