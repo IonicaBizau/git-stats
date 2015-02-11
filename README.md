@@ -19,10 +19,10 @@ The way I recommend to track your git commits is to use git hooks. Run the follo
 
 ```sh
 # Using curl
-curl -s https://raw.githubusercontent.com/IonicaBizau/git-stats/git-hooks/scripts/init-git-post-commit | bash
+curl -s https://raw.githubusercontent.com/IonicaBizau/git-stats/master/scripts/init-git-post-commit | bash
 
 # ...or wget
-wget -qO- https://raw.githubusercontent.com/IonicaBizau/git-stats/git-hooks/scripts/init-git-post-commit | bash
+wget -qO- https://raw.githubusercontent.com/IonicaBizau/git-stats/master/scripts/init-git-post-commit | bash
 ```
 
 Then, you have to run `git init` into your existing git repositories from your local machine (that's because the `post-commit` should be updated). This
