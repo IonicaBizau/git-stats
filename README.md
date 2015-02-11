@@ -126,7 +126,7 @@ Yes, you read correctly! That's also possible. I [built a tool for that too](htt
 
 ```sh
 # Download the repository downloader
-$ git clone git@github.com:IonicaBizau/repository-downloader.git
+$ git clone https://github.com/IonicaBizau/repository-downloader.git
 
 # Go to repository downloader
 $ cd repository-downloader
@@ -152,7 +152,8 @@ $ ghcal ionicabizau
 Fore more detailed documentation, check out the repository: https://github.com/IonicaBizau/ghcal.
 
 
-## Documentation
+## Documentation [![Inline docs](http://inch-ci.org/github/IonicaBizau/git-stats.svg?branch=master)](http://inch-ci.org/github/IonicaBizau/git-stats)
+
 If you want to use this as a module, that is possible. See the content below.
 
 ### `record(data, callback)`
