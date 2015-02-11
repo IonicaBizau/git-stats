@@ -14,6 +14,23 @@ $ npm install -g git-stats
 ### Catching the `git commit` command
 Would you like to catch and automatically store the commits when you do `git commit`?
 
+#### Using `git` hooks
+The way I recommend to track your git commits is to use git hooks. Run the following command to initialize the `post-commit` git hook.
+
+```sh
+# Using curl
+curl -s https://raw.githubusercontent.com/IonicaBizau/git-stats/git-hooks/scripts/init-git-post-commit | bash
+
+# ...or wget
+wget -qO- https://raw.githubusercontent.com/IonicaBizau/git-stats/git-hooks/scripts/init-git-post-commit | bash
+```
+
+Then, you have to run `git init` into your existing git repositories from your local machine (that's because the `post-commit` should be updated). This
+step will not be needed after clonning a repository (the git hooks will be added automatically from `~/.git-templates`).
+
+#### Overriding the `git` command
+One of the solutions is becoming a mad scientist, overriding the `git` command with a function. However, this may not work for you if you're using `zsh`.
+
 If so, put the following lines in your `~/.bashrc` (or `~/.bash_profile` on OS X) file:
 
 ```sh
