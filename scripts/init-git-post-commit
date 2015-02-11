@@ -1,18 +1,21 @@
 #!/bin/sh
 
-git config --global init.templatedir '~/.git-templates'
-mkdir -p ~/.git-templates/hooks
-post_commit_path="~/.git-templates/hooks/post-commit"
+git_templates_dir="$HOME/.git-templates"
+git_hooks_dir="$git_templates_dir/hooks"
+post_commit_path="$git_hooks_dir/post-commit"
+
+git config --global init.templatedir $git_templates_dir
+mkdir -p $git_hooks_dir
 
 cat << EOF > $post_commit_path
 #!/bin/sh
 
 # Copy last commit hash to clipboard on commit
-commit_hash=`git rev-parse HEAD`
-repo_url=`git config --get remote.origin.url`
-commit_date=`git log -1 --format=%cd`
-commit_data="\"{ \"date\": \"$commit_date\", \"url\": \"$repo_url\", \"hash\": \"$commit_hash\" }\""
-git-stats --record "$commit_data"
+commit_hash=\`git rev-parse HEAD\`
+repo_url=\`git config --get remote.origin.url\`
+commit_date=\`git log -1 --format=%cd\`
+commit_data="\"{ \"date\": \"\$commit_date\", \"url\": \"\$repo_url\", \"hash\": \"\$commit_hash\" }\""
+git-stats --record "\$commit_data"
 EOF
 
 chmod +x $post_commit_path
