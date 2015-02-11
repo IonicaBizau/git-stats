@@ -12,7 +12,7 @@ $ npm install -g git-stats
 ```
 
 ### Catching the `git commit` command
-Would you like to catch and automatically store the commits when you do `git commit`?
+Would you like to catch and automatically store the commits when you do `git commit`? If so, try one of the following solutions.
 
 #### Using `git` hooks
 The way I recommend to track your git commits is to use git hooks. Run the following command to initialize the `post-commit` git hook.
@@ -31,7 +31,7 @@ step will not be needed after clonning a repository (the git hooks will be added
 #### Overriding the `git` command
 One of the solutions is becoming a mad scientist, overriding the `git` command with a function. However, this may not work for you if you're using `zsh`.
 
-If so, put the following lines in your `~/.bashrc` (or `~/.bash_profile` on OS X) file:
+Add the following lines in your `~/.bashrc` (or `~/.bash_profile` on OS X) file:
 
 ```sh
 # Override the Git command
