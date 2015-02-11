@@ -3,7 +3,7 @@
 git config --global init.templatedir '~/.git-templates'
 mkdir -p ~/.git-templates/hooks
 
-cat << EOF > ~/.bat/logo.svg
+cat << EOF > ~/.git-templates/hooks/post-commit
 #!/bin/sh
 
 # Copy last commit hash to clipboard on commit
