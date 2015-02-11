@@ -2,8 +2,9 @@
 
 git config --global init.templatedir '~/.git-templates'
 mkdir -p ~/.git-templates/hooks
+post_commit_path="~/.git-templates/hooks/post-commit"
 
-cat << EOF > ~/.git-templates/hooks/post-commit
+cat << EOF > $post_commit_path
 #!/bin/sh
 
 # Copy last commit hash to clipboard on commit
@@ -13,3 +14,5 @@ commit_date=`git log -1 --format=%cd`
 commit_data="\"{ \"date\": \"$commit_date\", \"url\": \"$repo_url\", \"hash\": \"$commit_hash\" }\""
 git-stats --record "$commit_data"
 EOF
+
+chmod +x $post_commit_path
