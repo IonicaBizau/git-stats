@@ -2,7 +2,7 @@
 # `$ git-stats`
 A GitHub-like contributions calendar, but locally, with all your git commits.
 
-These are all real commits from the last year.
+These are all my real commits from the last year.
 
 ![](http://i.imgur.com/LfLJAaE.png)
 
