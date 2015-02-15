@@ -26,7 +26,7 @@ wget -qO- https://raw.githubusercontent.com/IonicaBizau/git-stats/master/scripts
 ```
 
 Then, you have to run `git init` into your existing git repositories from your local machine (that's because the `post-commit` should be updated). This
-step will not be needed after clonning a repository (the git hooks will be added automatically from `~/.git-templates`).
+step will not be needed after cloning a repository (the git hooks will be added automatically from `~/.git-templates`).
 
 #### Overriding the `git` command
 One of the solutions is becoming a mad scientist, overriding the `git` command with a function. However, this may not work for you if you're using `zsh`.
@@ -149,8 +149,7 @@ $ npm install -g ghcal
 $ ghcal ionicabizau
 ```
 
-Fore more detailed documentation, check out the repository: https://github.com/IonicaBizau/ghcal.
-
+For more detailed documentation, check out the repository: https://github.com/IonicaBizau/ghcal.
 
 ## Documentation [![Inline docs](http://inch-ci.org/github/IonicaBizau/git-stats.svg?branch=master)](http://inch-ci.org/github/IonicaBizau/git-stats)
 
@@ -190,7 +189,7 @@ Saves the provided stats.
 - **GitStats** The `GitStats` object.
 
 ### `iterateDays(data, callback)`
-Iterate the days, calling the callback function for each day.
+Iterate through the days, calling the callback function on each day.
 
 #### Params
 - **Object** `data`: An object containing the following fields:
