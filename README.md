@@ -8,16 +8,16 @@ These are all my real commits from the last year.
 
 ## Contents
 
- - [Installation](https://github.com/IonicaBizau/git-stats#installation)
- - [Catching the `git commit` command](https://github.com/IonicaBizau/git-stats#catching-the-git-commit-command)
-   - [Using `git` hooks](https://github.com/IonicaBizau/git-stats#using-git-hooks)
-   - [Overriding the `git` command](https://github.com/IonicaBizau/git-stats#overriding-the-git-command)
- - [Usage](https://github.com/IonicaBizau/git-stats#usage)
-   - [Importing and deleting commits](https://github.com/IonicaBizau/git-stats#importing-and-deleting-commits)
-   - [Importing all the commits from GitHub and BitBucket](https://github.com/IonicaBizau/git-stats#importing-all-the-commits-from-github-and-bitbucket)
-   - [See the GitHub Contributions calendar](https://github.com/IonicaBizau/git-stats#see-the-github-contributions-calendar)
- - [Documentation](https://github.com/IonicaBizau/git-stats#documentation-)
- - [How to contribute](https://github.com/IonicaBizau/git-stats#how-to-contribute)
+ - [Installation](#installation)
+ - [Catching the `git commit` command](#catching-the-git-commit-command)
+   - [Using `git` hooks](#using-git-hooks)
+   - [Overriding the `git` command](#overriding-the-git-command)
+ - [Usage](#usage)
+   - [Importing and deleting commits](#importing-and-deleting-commits)
+   - [Importing all the commits from GitHub and BitBucket](#importing-all-the-commits-from-github-and-bitbucket)
+   - [See the GitHub Contributions calendar](#see-the-github-contributions-calendar)
+ - [Documentation](#documentation-)
+ - [How to contribute](#how-to-contribute)
 
 ## Installation
 ```sh
