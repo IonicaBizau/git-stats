@@ -2,7 +2,7 @@
 # `$ git-stats`
 A GitHub-like contributions calendar, but locally, with all your git commits.
 
-These are all my real commits from the last year.
+I'd be curious to see your calendar with all your commits. Ping me on Twitter ([**@IonicaBizau**](https://twitter.com/IonicaBizau)). :smile: Until then, here's my calendar:
 
 ![](http://i.imgur.com/LfLJAaE.png)
 
