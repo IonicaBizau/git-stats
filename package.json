@@ -10,6 +10,9 @@
     "test": "node test"
   },
   "author": "Ionică Bizău <bizauionica@gmail.com>",
+  "contributors": [
+    "Gnab <as0n@gnab.fr>"
+  ],
   "license": "MIT",
   "devDependencies": {},
   "repository": {
