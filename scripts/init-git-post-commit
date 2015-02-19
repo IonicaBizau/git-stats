@@ -1,5 +1,13 @@
 #!/bin/sh
 
+check_command() {
+	command -v "$1" > /dev/null 2>&1 || { echo "git-stats hook script requires the \`${1}\` binary in order to run." >&2; exit 1; }
+}
+
+check_command "perl"
+check_command "printf"
+check_command "git"
+
 echo "Setting up git-stats hooks.";
 
 git_templates_dir=$(git config --global --get init.templatedir);
