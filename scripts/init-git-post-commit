@@ -1,21 +1,32 @@
 #!/bin/sh
 
-git_templates_dir="$HOME/.git-templates"
-git_hooks_dir="$git_templates_dir/hooks"
-post_commit_path="$git_hooks_dir/post-commit"
+git_templates_dir=$(git config --global --get init.templatedir);
+if [ $? -ne 0 ]; then
+	# Create a new global templatedir if there are none
+	git_templates_dir="${HOME}/.git-templates"
+	git config --global init.templatedir "$git_templates_dir"
+fi
+git_hooks_dir="${git_templates_dir}/hooks"
+post_commit_path="${git_hooks_dir}/post-commit"
 
-git config --global init.templatedir $git_templates_dir
-mkdir -p $git_hooks_dir
+mkdir -p "$git_hooks_dir"
 
-cat << EOF > $post_commit_path
-#!/bin/sh
+hook=$(cat <<EOF
 
+### git-stats hook (begin) ###
 # Copy last commit hash to clipboard on commit
 commit_hash=\`git rev-parse HEAD\`
 repo_url=\`git config --get remote.origin.url\`
 commit_date=\`git log -1 --format=%cd\`
 commit_data="\"{ \"date\": \"\$commit_date\", \"url\": \"\$repo_url\", \"hash\": \"\$commit_hash\" }\""
 git-stats --record "\$commit_data"
+### git-stats hook (end) ###
 EOF
+);
 
-chmod +x $post_commit_path
+if [ ! -f "$post_commit_path" ]; then
+	printf "#!/bin/sh\n%s" "$hook" > "$post_commit_path"
+	chmod +x "$post_commit_path"
+else
+	printf "\n%s\n" "$hook" >> "$post_commit_path"
+fi
