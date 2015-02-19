@@ -2,17 +2,21 @@
 
 echo "Setting up git-stats hooks.";
 
+# Create a new global templatedir if there are none
 git_templates_dir=$(git config --global --get init.templatedir);
 if [ $? -ne 0 ]; then
-	# Create a new global templatedir if there are none
-	git_templates_dir="${HOME}/.git-templates"
-	git config --global init.templatedir "$git_templates_dir"
+    git_templates_dir="${HOME}/.git-templates"
+    git config --global init.templatedir "$git_templates_dir"
 fi
+
+# Prepare some path variables
 git_hooks_dir="${git_templates_dir}/hooks"
 post_commit_path="${git_hooks_dir}/post-commit"
 
+# Create the hook directory
 mkdir -p "$git_hooks_dir"
 
+# Create the post-commit file content
 hook=$(cat <<EOF
 
 ### git-stats hook (begin) ###
@@ -26,15 +30,16 @@ git-stats --record "\$commit_data"
 EOF
 );
 
+# Does post-commit file exist?
 if [ ! -f "$post_commit_path" ]; then
-	printf "#!/bin/sh\n%s" "$hook" > "$post_commit_path" \
-		&& chmod +x "$post_commit_path" \
-		&& echo "Successfully set up git-stats hook at ${post_commit_path}." \
-		&& exit 0
+    printf "#!/bin/sh\n%s" "$hook" > "$post_commit_path" \
+        && chmod +x "$post_commit_path" \
+        && echo "Successfully set up git-stats hook at ${post_commit_path}." \
+        && exit 0
 else
-	printf "\n%s\n" "$hook" >> "$post_commit_path" \
-		&& echo "Successfully set up git-stats hook at ${post_commit_path}." \
-		&& exit 0
+    printf "\n%s\n" "$hook" >> "$post_commit_path" \
+        && echo "Successfully set up git-stats hook at ${post_commit_path}." \
+        && exit 0
 fi
 
 echo "Couldn't set up git-stats hook."
