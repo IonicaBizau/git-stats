@@ -1,43 +1,50 @@
 #!/bin/sh
 
+# Check dependencies
+check_command() {
+    command -v "$1" > /dev/null 2>&1 || { echo "git-stats hook script requires the \`${1}\` binary in order to run." >&2; exit 1; }
+}
+
+check_command "perl"
+check_command "printf"
+check_command "git"
+
 echo "Setting up git-stats hooks.";
 
 # Create a new global templatedir if there are none
 git_templates_dir=$(git config --global --get init.templatedir);
 if [ $? -ne 0 ]; then
+    # Create a new global templatedir if there are none
     git_templates_dir="${HOME}/.git-templates"
-    git config --global init.templatedir "$git_templates_dir"
+    git config --global init.templatedir "$git_templates_dir" && echo "Set new global git template dir at ${git_templates_dir}"
 fi
-
-# Prepare some path variables
 git_hooks_dir="${git_templates_dir}/hooks"
 post_commit_path="${git_hooks_dir}/post-commit"
 
-# Create the hook directory
 mkdir -p "$git_hooks_dir"
 
 # Create the post-commit file content
 hook=$(cat <<EOF
-
 ### git-stats hook (begin) ###
 # Copy last commit hash to clipboard on commit
-commit_hash=\`git rev-parse HEAD\`
-repo_url=\`git config --get remote.origin.url\`
-commit_date=\`git log -1 --format=%cd\`
+commit_hash=\$(git rev-parse HEAD)
+repo_url=\$(git config --get remote.origin.url)
+commit_date=\$(git log -1 --format=%cd)
 commit_data="\"{ \"date\": \"\$commit_date\", \"url\": \"\$repo_url\", \"hash\": \"\$commit_hash\" }\""
-git-stats --record "\$commit_data"
+git-stats --record "\${commit_data}"
 ### git-stats hook (end) ###
 EOF
 );
 
-# Does post-commit file exist?
 if [ ! -f "$post_commit_path" ]; then
     printf "#!/bin/sh\n%s" "$hook" > "$post_commit_path" \
         && chmod +x "$post_commit_path" \
         && echo "Successfully set up git-stats hook at ${post_commit_path}." \
         && exit 0
 else
-    printf "\n%s\n" "$hook" >> "$post_commit_path" \
+    # Remove any previous git-stats hook code blocks
+    perl -i -0pe 's/(([ \t]*# Copy last commit hash to clipboard on commit\s*(\n.*){5}\s*git-stats --record "\$commit_data"\s*)|([ \t]*### git-stats hook \(begin\) ###\s*(\n.*){7}\s*### git-stats hook \(end\) ###\s*))//g' "$post_commit_path"
+    printf "%s\n" "$hook" >> "$post_commit_path" \
         && echo "Successfully set up git-stats hook at ${post_commit_path}." \
         && exit 0
 fi
