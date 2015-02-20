@@ -112,6 +112,9 @@ Documentation can be found at https://github.com/IonicaBizau/git-stats
 
 If you override the `git` command with a function, then your commits will be automatically recorded.
 
+If you run `git-stats` to display graph on Windows, please use a terminal that can properly display ANSI colors.
+Cygwin Terminal is known to work, while Windows Command Prompt and Git Bash do not.
+
 ### Importing and deleting commits
 I know it's not nice to start your git commit calendar from scratch. That's why I
 created a `git-stats-importer` that imports or deletes the commits from a repository.
