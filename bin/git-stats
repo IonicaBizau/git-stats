@@ -28,6 +28,7 @@ switch (process.argv[2]) {
         });
         break;
     case "--help":
+    case "-h":
         console.log(Fs.readFileSync(__dirname + "/docs/help", "utf-8"));
         break;
     case "-v":
