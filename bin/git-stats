@@ -7,6 +7,8 @@ var GitStats = require("../lib")
   , AnsiParser = require("ansi-parser")
   , Logger = require("bug-killer")
   , GitStatsColors = require("git-stats-colors")
+  , CLP = require("clp")
+  , Package = require("../package")
   ;
 
 // Configurations
@@ -14,55 +16,75 @@ Logger.config.displayDate = false;
 Logger.config.logLevel = 4;
 Moment.suppressDeprecationWarnings = true;
 
-// CLI options
-switch (process.argv[2]) {
-    case "--record":
-        var data = process.argv[3].replace(/^\"|\"$/g, "");
-        try {
-            data = JSON.parse(data);
-        } catch (e) {
-            throw e;
-        }
-        GitStats.record(data, function (err) {
-            if (err) { return Logger.log(err, "error"); }
-        });
-        break;
-    case "--help":
-        console.log(Fs.readFileSync(__dirname + "/docs/help", "utf-8"));
-        break;
-    case "-v":
-        console.log(require("../package.json").version);
-        break;
-    default:
-        var options = {};
+// Parse the command line arguments
+var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this unless you are a mad scientist. If you are a developer, just use this option as part of the module.", "data")
+  , startDateOpt = new CLP.Option(["s", "start"], "Optional start date", "date")
+  , endDateOpt = new CLP.Option(["e", "end"], "Optional end date", "date")
+  , noAnsiOpt = new CLP.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
+  , lightOpt = new CLP.Option(["l", "light"], "Enables the light theme.")
+  , parser = new CLP({
+        name: "Git Stats"
+      , version: Package.version
+      , exe: Package.name
+      , examples: [
+            "git-stats # Displays your commit calendar"
+          , "git-stats --light # Light mode"
+          , "git-stats '1 January 2012' # All the commits from 1 January 2012, to now"
+          , "git-stats '1 January 2012' '31 December 2012' # All the commits from 2012"
+        ]
+      , docs_url: "https://github.com/IonicaBizau/git-stats"
+      , notes: "Your commit history is kept in the .git-stats, in your $HOME directory (~/)"
+      , process: true
+    }, [
+        startDateOpt
+      , endDateOpt
+      , noAnsiOpt
+      , lightOpt
+      , recordOpt
+    ])
+  , options = null
+  ;
 
-        if (process.argv.length !== 2) {
-            if (process.argv[2]) {
-                options.start = Moment(process.argv[2]);
 
-            }
+// --record
+if (recordOpt.is_provided) {
 
-            if (process.argv[3]) {
-                options.end = Moment(process.argv[3]);
-            }
-        }
+    try {
+        options = JSON.parse(recordOpt.value.replace(/^\"|\"$/g, ""));
+    } catch (e) {
+        Logger.log(e, "error");
+        return process.exit(1);
+    }
 
-        if (!options.start || !options.start.isValid()) {
-            options.start = Moment().subtract(1, "years");
-        }
-
-        if (!options.end || !options.end.isValid()) {
-            options.end = Moment();
-        }
-
-        GitStats.ansiCalendar(options, function (err, data) {
-            if (err) { return Logger.log(err, "error"); }
-            data = AnsiParser.removeAnsi(data);
-            if (process.argv.indexOf("--no-ansi") === -1) {
-                data = GitStatsColors(data, process.argv.indexOf("--light") !== -1 ? "LIGHT": "DARK");
-            }
-
-            console.log(err || data);
-        });
-        break;
+    return GitStats.record(options, function (err) {
+        if (err) { return Logger.log(err, "error"); }
+        process.exit(0);
+    });
 }
+
+// Create the options
+options = {
+    start: startDateOpt.value ? Moment(startDateOpt.value) : Moment().subtract(1, "years")
+  , end: endDateOpt.value ? Moment(endDateOpt.value) : Moment()
+};
+
+// Validate the dates
+if (!options.start || !options.start.isValid()) {
+    options.start = Moment().subtract(1, "years");
+    Logger.log("Invalid start date. Using default instead (" + options.start.format("LL") + ").", "warn");
+}
+
+if (!options.end || !options.end.isValid()) {
+    options.end = Moment();
+    Logger.log("Invalid end date. Using default instead (" + options.end.format("LL") + ").", "warn");
+}
+
+// Create the ANSI calendar
+GitStats.ansiCalendar(options, function (err, data) {
+    if (err) { return Logger.log(err, "error"); }
+    data = AnsiParser.removeAnsi(data);
+    if (!noAnsiOpt.is_provided) {
+        data = GitStatsColors(data, lightOpt.is_provided ? "LIGHT": "DARK");
+    }
+    process.stdout.write(data + "\n");
+});
