@@ -18,11 +18,8 @@ Moment.suppressDeprecationWarnings = true;
 switch (process.argv[2]) {
     case "--record":
         var data = process.argv[3].replace(/^\"|\"$/g, "");
-        try {
-            data = JSON.parse(data);
-        } catch (e) {
-            throw e;
-        }
+        data = JSON.parse(data);
+
         GitStats.record(data, function (err) {
             if (err) { return Logger.log(err, "error"); }
         });
