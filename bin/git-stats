@@ -27,10 +27,10 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
       , version: Package.version
       , exe: Package.name
       , examples: [
-            "git-stats # Displays your commit calendar"
-          , "git-stats --light # Light mode"
-          , "git-stats '1 January 2012' # All the commits from 1 January 2012, to now"
-          , "git-stats '1 January 2012' '31 December 2012' # All the commits from 2012"
+            "git-stats # Default behavior (stats in the last year)"
+          , "git-stats -l # Light mode"
+          , "git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now"
+          , "git-stats -s '1 January 2012' -s '31 December 2012' # All the commits from 2012"
         ]
       , docs_url: "https://github.com/IonicaBizau/git-stats"
       , notes: "Your commit history is kept in the .git-stats, in your $HOME directory (~/)"
