@@ -33,6 +33,7 @@
   "dependencies": {
     "ansi-parser": "^1.4.0",
     "cli-box": "^2.1.1",
+    "clp": "1.2.0",
     "bug-killer": "^1.0.0",
     "git-stats-colors": "^1.2.0",
     "moment": "^2.9.0",
