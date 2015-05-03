@@ -1,6 +1,6 @@
 {
   "name": "git-stats",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "A GitHub-like contributions calendar, but locally, with all your git commits.",
   "main": "lib/index.js",
   "bin": {
