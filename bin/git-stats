@@ -34,9 +34,10 @@ switch (process.argv[2]) {
     default:
         var options = {
                 theme: "DARK"
-            },
-            parameter,
-            i;
+            }
+          , parameter
+          , i
+          ;
 
         // iterate over all parameters and assign them in options object
         for (i = 2; i < process.argv.length; i++) {
