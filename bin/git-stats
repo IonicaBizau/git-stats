@@ -20,6 +20,7 @@ Moment.suppressDeprecationWarnings = true;
 var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this unless you are a mad scientist. If you are a developer, just use this option as part of the module.", "data")
   , startDateOpt = new CLP.Option(["s", "start"], "Optional start date", "date")
   , endDateOpt = new CLP.Option(["e", "end"], "Optional end date", "date")
+  , authorsOpt = new CLP.Option(["a", "authors"], "Shows a pie chart with the author related contributions in the current repository.")
   , noAnsiOpt = new CLP.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
   , lightOpt = new CLP.Option(["l", "light"], "Enables the light theme.")
   , parser = new CLP({
@@ -79,12 +80,13 @@ if (!options.end || !options.end.isValid()) {
     Logger.log("Invalid end date. Using default instead (" + options.end.format("LL") + ").", "warn");
 }
 
-// Create the ANSI calendar
-GitStats.ansiCalendar(options, function (err, data) {
+// Show the graphs
+GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, function (err, data) {
     if (err) { return Logger.log(err, "error"); }
     data = AnsiParser.removeAnsi(data);
     if (!noAnsiOpt.is_provided) {
         data = GitStatsColors(data, lightOpt.is_provided ? "LIGHT": "DARK");
     }
     process.stdout.write(data + "\n");
+
 });
