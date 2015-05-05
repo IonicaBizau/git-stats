@@ -12,7 +12,8 @@
   "author": "Ionică Bizău <bizauionica@gmail.com>",
   "contributors": [
     "Gnab <as0n@gnab.fr>",
-    "William Boman <william@redwill.se>"
+    "William Boman <william@redwill.se>",
+    "Fabian Furger <mystyfly@gmail.com>"
   ],
   "license": "MIT",
   "devDependencies": {},

@@ -18,34 +18,47 @@ Moment.suppressDeprecationWarnings = true;
 switch (process.argv[2]) {
     case "--record":
         var data = process.argv[3].replace(/^\"|\"$/g, "");
-        try {
-            data = JSON.parse(data);
-        } catch (e) {
-            throw e;
-        }
+        data = JSON.parse(data);
+
         GitStats.record(data, function (err) {
             if (err) { return Logger.log(err, "error"); }
         });
         break;
     case "--help":
+    case "-h":
         console.log(Fs.readFileSync(__dirname + "/docs/help", "utf-8"));
         break;
     case "-v":
         console.log(require("../package.json").version);
         break;
     default:
-        var options = {};
-
-        if (process.argv.length !== 2) {
-            if (process.argv[2]) {
-                options.start = Moment(process.argv[2]);
-
+        var options = {
+                theme: "DARK"
             }
+          , parameter
+          , i
+          ;
 
-            if (process.argv[3]) {
-                options.end = Moment(process.argv[3]);
+        // iterate over all parameters and assign them in options object
+        for (i = 2; i < process.argv.length; i++) {
+            parameter = process.argv[i];
+            // does the parameter represent a date?
+            if (Moment(parameter).isValid()) {
+                // the date is end date if start date is set
+                if (options.start) {
+                    options.end = Moment(parameter);
+                } else {
+                    options.start = Moment(parameter);
+                }
+            } else if (parameter == "--light") {
+                // change theme
+                options.theme = "LIGHT";
+            } else if (parameter == "--no-ansi") {
+                // request no-ansi
+                options.noansi = true;
             }
         }
+
 
         if (!options.start || !options.start.isValid()) {
             options.start = Moment().subtract(1, "years");
@@ -57,9 +70,10 @@ switch (process.argv[2]) {
 
         GitStats.ansiCalendar(options, function (err, data) {
             if (err) { return Logger.log(err, "error"); }
+
             data = AnsiParser.removeAnsi(data);
-            if (process.argv.indexOf("--no-ansi") === -1) {
-                data = GitStatsColors(data, process.argv.indexOf("--light") !== -1 ? "LIGHT": "DARK");
+            if (!options.noansi) {
+                data = GitStatsColors(data, options.theme);
             }
 
             console.log(err || data);
