@@ -42,6 +42,7 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
       , noAnsiOpt
       , lightOpt
       , recordOpt
+      , authorsOpt
     ])
   , options = null
   ;
@@ -80,6 +81,10 @@ if (!options.end || !options.end.isValid()) {
     Logger.log("Invalid end date. Using default instead (" + options.end.format("LL") + ").", "warn");
 }
 
+if (authorsOpt.is_provided) {
+    options.repo = process.cwd();
+}
+
 // Show the graphs
 GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, function (err, data) {
     if (err) { return Logger.log(err, "error"); }
@@ -88,5 +93,4 @@ GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, functi
         data = GitStatsColors(data, lightOpt.is_provided ? "LIGHT": "DARK");
     }
     process.stdout.write(data + "\n");
-
 });
