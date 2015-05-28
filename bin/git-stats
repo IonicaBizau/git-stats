@@ -85,16 +85,14 @@ if (authorsOpt.is_provided) {
     options.repo = process.cwd();
     options.no_ansi = noAnsiOpt.is_provided;
     options.radius = (process.stdout.rows / 2) - 4;
+} else {
+    options.theme = noAnsiOpt.is_provided ? null
+                  : lightOpt.is_provided ? "LIGHT": "DARK"
+                  ;
 }
 
 // Show the graphs
 GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, function (err, data) {
     if (err) { return Logger.log(err, "error"); }
-    if (!authorsOpt.is_provided) {
-        data = AnsiParser.removeAnsi(data);
-        if (!noAnsiOpt.is_provided) {
-            data = GitStatsColors(data, lightOpt.is_provided ? "LIGHT": "DARK");
-        }
-    }
     process.stdout.write(data + "\n");
 });
