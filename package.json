@@ -33,9 +33,9 @@
   "homepage": "https://github.com/IonicaBizau/git-stats",
   "dependencies": {
     "ansi-parser": "^1.4.0",
-    "cli-box": "^2.1.1",
+    "cli-box": "^5.0.0",
     "bug-killer": "^1.0.0",
-    "git-stats-colors": "^1.0.0",
+    "git-stats-colors": "^2.1.0",
     "moment": "^2.9.0",
     "ul": "^1.1.0"
   }
