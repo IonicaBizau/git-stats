@@ -33,13 +33,13 @@
   "dependencies": {
     "bug-killer": "^4.0.0",
     "clp": "^3.0.0",
-    "git-stats-colors": "^1.2.0",
     "moment": "^2.9.0",
     "ul": "^5.0.0",
     "r-json": "^1.0.0",
     "w-json": "^1.0.0",
     "is-there": "^4.0.0",
     "cli-pie": "^2.0.0",
-    "cli-gh-cal": "^1.0.0"
+    "cli-gh-cal": "^1.0.0",
+    "abs": "^1.0.0"
   }
 }

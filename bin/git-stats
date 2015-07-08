@@ -3,9 +3,7 @@
 // Dependencies
 var GitStats = require("../lib")
   , Moment = require("moment")
-  , Fs = require("fs")
   , Logger = require("bug-killer")
-  , GitStatsColors = require("git-stats-colors")
   , CLP = require("clp")
   , Package = require("../package")
   ;
