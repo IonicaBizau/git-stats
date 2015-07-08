@@ -20,6 +20,7 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
   , authorsOpt = new CLP.Option(["a", "authors"], "Shows a pie chart with the author related contributions in the current repository.")
   , noAnsiOpt = new CLP.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
   , lightOpt = new CLP.Option(["l", "light"], "Enables the light theme.")
+  , globalActivityOpt = new CLP.Option(["g", "global-activyt"], "Shows global activity calendar in the current repository.")
   , parser = new CLP({
         name: "Git Stats"
       , version: Package.version
@@ -40,6 +41,7 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
       , lightOpt
       , recordOpt
       , authorsOpt
+      , globalActivityOpt
     ])
   , options = null
   ;
@@ -78,8 +80,11 @@ if (!options.end || !options.end.isValid()) {
     Logger.log("Invalid end date. Using default instead (" + options.end.format("LL") + ").", "warn");
 }
 
-if (authorsOpt.is_provided) {
+if (authorsOpt.is_provided || globalActivityOpt.is_provided) {
     options.repo = process.cwd();
+}
+
+if (authorsOpt.is_provided) {
     options.no_ansi = noAnsiOpt.is_provided;
     options.radius = (process.stdout.rows / 2) - 4;
 } else {
@@ -88,8 +93,14 @@ if (authorsOpt.is_provided) {
                   ;
 }
 
-// Show the graphs
-GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, function (err, data) {
+function display (err, data) {
     if (err) { return Logger.log(err, "error"); }
     process.stdout.write(data + "\n");
-});
+}
+
+if (globalActivityOpt.is_provided) {
+    return GitStats.globalActivity(options, display);
+}
+
+// Show the graphs
+GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, display);
