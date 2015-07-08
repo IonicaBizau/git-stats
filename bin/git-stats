@@ -4,7 +4,6 @@
 var GitStats = require("../lib")
   , Moment = require("moment")
   , Fs = require("fs")
-  , AnsiParser = require("ansi-parser")
   , Logger = require("bug-killer")
   , GitStatsColors = require("git-stats-colors")
   , CLP = require("clp")
