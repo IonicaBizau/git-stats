@@ -2,26 +2,71 @@
 
 // Dependencies
 var GitStats = new (require("../lib"))()
+  , Ul = require("ul")
   , Moment = require("moment")
   , Logger = require("bug-killer")
   , CLP = require("clp")
   , Abs = require("abs")
   , Package = require("../package")
+  , ReadJson = require("r-json")
   ;
+
+// Constants
+const CONFIG_PATH = Abs("~/.git-stats-config.json")
+    , DEFAULT_CONFIG = {
+        // Dark theme by default
+        theme: "DARK"
+
+        // This defaults in library
+      , path: undefined
+
+        // This defaults in cli-gh-cal
+      , first_day: undefined
+
+        // This defaults to *one year ago*
+      , since: undefined
+
+        // This defaults to *now*
+      , until: undefined
+
+        // This defaults to "DARK" -- this can be a
+        // string or an object
+      , theme: undefined
+
+        // Don't show authors by default
+      , authors: false
+
+        // No global activity by default
+      , global_activity: false
+
+        // Show only the user contributions calendar
+      , calendar: true
+      }
+    ;
 
 // Configurations
 Moment.suppressDeprecationWarnings = true;
+GitStats.config = {};
+try {
+    GitStats.config = ReadJson(CONFIG_PATH);
+} catch (err) {
+    if (err.code !== "ENOENT") {
+        Logger.log("Failed to read the config file: " + err.stack, "warn");
+    }
+}
+
+GitStats.config = Ul.deepMerge(GitStats.config, DEFAULT_CONFIG);
 
 // Parse the command line arguments
 var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this unless you are a mad scientist. If you are a developer, just use this option as part of the module.", "data")
-  , startDateOpt = new CLP.Option(["s", "start"], "Optional start date", "date")
-  , endDateOpt = new CLP.Option(["e", "end"], "Optional end date", "date")
+  , sinceDateOpt = new CLP.Option(["s", "since"], "Optional start date.", "date", GitStats.config.since)
+  , untilDateOpt = new CLP.Option(["u", "until"], "Optional end date.", "date", GitStats.config.until)
   , authorsOpt = new CLP.Option(["a", "authors"], "Shows a pie chart with the author related contributions in the current repository.")
   , noAnsiOpt = new CLP.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
   , lightOpt = new CLP.Option(["l", "light"], "Enables the light theme.")
-  , configPathOpt = new CLP.Option(["c", "config"], "Sets a custom config file.", "path")
+  , dataPathOpt = new CLP.Option(["d", "data"], "Sets a custom data store file.", "path", GitStats.config.path)
   , globalActivityOpt = new CLP.Option(["g", "global-activity"], "Shows global activity calendar in the current repository.")
-  , firstDayOpt = new CLP.Option(["d", "first-day"], "Sets the first day of the week.", "day", "Sun")
+  , firstDayOpt = new CLP.Option(["f", "first-day"], "Sets the first day of the week.", "day", GitStats.config.first_day)
   , parser = new CLP({
         name: "Git Stats"
       , version: Package.version
@@ -30,27 +75,32 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
             "git-stats # Default behavior (stats in the last year)"
           , "git-stats -l # Light mode"
           , "git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now"
-          , "git-stats -s '1 January 2012' -s '31 December 2012' # All the commits from 2012"
+          , "git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012"
         ]
       , docs_url: "https://github.com/IonicaBizau/git-stats"
-      , notes: "Your commit history is kept in the .git-stats, in your $HOME directory (~/)"
+      , notes: "Your commit history is kept in ~/.git-stats by default. You can create ~/.git-stats-config to specify different defaults."
       , process: true
     }, [
-        startDateOpt
-      , endDateOpt
+        sinceDateOpt
+      , untilDateOpt
       , noAnsiOpt
       , lightOpt
       , recordOpt
       , authorsOpt
       , globalActivityOpt
-      , configPathOpt
+      , dataPathOpt
       , firstDayOpt
     ])
   , options = null
   ;
 
-if (configPathOpt.is_provided) {
-    GitStats.path = Abs(configPathOpt.value);
+// Handle data path
+if (dataPathOpt.is_provided) {
+    GitStats.path = Abs(dataPathOpt.value);
+    GitStats.config.data_path = GitStats.path;
+    if (!IsThere(GitStats.path)) {
+        Logger.log("Cannot find the the specified data path file.", "warn");
+    }
 }
 
 // --record
@@ -71,8 +121,8 @@ if (recordOpt.is_provided) {
 
 // Create the options
 options = {
-    start: startDateOpt.value ? Moment(startDateOpt.value) : Moment().subtract(1, "years")
-  , end: endDateOpt.value ? Moment(endDateOpt.value) : Moment()
+    start: sinceDateOpt.value ? Moment(sinceDateOpt.value) : Moment().subtract(1, "years")
+  , end: untilDateOpt.value ? Moment(untilDateOpt.value) : Moment()
 };
 
 // Validate the dates
@@ -81,24 +131,33 @@ if (!options.start || !options.start.isValid()) {
     Logger.log("Invalid start date. Using default instead (" + options.start.format("LL") + ").", "warn");
 }
 
+// Handle time range options
 if (!options.end || !options.end.isValid()) {
     options.end = Moment();
     Logger.log("Invalid end date. Using default instead (" + options.end.format("LL") + ").", "warn");
 }
 
+// Add the repo path
 if (authorsOpt.is_provided || globalActivityOpt.is_provided) {
     options.repo = process.cwd();
 }
 
+// Handle authors
 if (authorsOpt.is_provided) {
     options.no_ansi = noAnsiOpt.is_provided;
     options.radius = (process.stdout.rows / 2) - 4;
 } else {
     options.firstDay = firstDayOpt.value;
-    options.theme = noAnsiOpt.is_provided ? null
-                  : lightOpt.is_provided ? "LIGHT": "DARK"
-                  ;
+    // This can be a string or an object
+    if (GitStats.config.theme) {
+        options.theme = GitStats.config.theme;
+    } else {
+        options.theme = noAnsiOpt.is_provided ? null
+                      : lightOpt.is_provided ? "LIGHT": "DARK"
+                      ;
+    }
 }
+
 
 function display (err, data) {
     if (err) { return Logger.log(err, "error"); }
