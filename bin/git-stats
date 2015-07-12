@@ -7,6 +7,7 @@ var GitStats = new (require("../lib"))()
   , Logger = require("bug-killer")
   , CLP = require("clp")
   , Abs = require("abs")
+  , Typpy = require("typpy")
   , Package = require("../package")
   , ReadJson = require("r-json")
   ;
@@ -152,11 +153,16 @@ if (authorsOpt.is_provided || globalActivityOpt.is_provided) {
 if (authorsOpt.is_provided) {
     options.no_ansi = noAnsiOpt.is_provided;
     options.radius = (process.stdout.rows / 2) - 4;
-} else {
+}
+
+if (!authorsOpt.is_provided || globalActivityOpt.is_provided) {
     options.firstDay = firstDayOpt.value;
     // This can be a string or an object
-    if (GitStats.config.theme) {
+    if (/^object|string$/.test(Typpy(GitStats.config.theme))) {
         options.theme = GitStats.config.theme;
+        if (!/^DARK|LIGHT$/.test(options.theme)) {
+            options.theme = null;
+        }
     } else {
         options.theme = noAnsiOpt.is_provided ? null
                       : lightOpt.is_provided ? "LIGHT": "DARK"
