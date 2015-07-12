@@ -10,8 +10,6 @@ var GitStats = new (require("../lib"))()
   ;
 
 // Configurations
-Logger.config.displayDate = false;
-Logger.config.logLevel = 4;
 Moment.suppressDeprecationWarnings = true;
 
 // Parse the command line arguments
@@ -22,7 +20,8 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
   , noAnsiOpt = new CLP.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
   , lightOpt = new CLP.Option(["l", "light"], "Enables the light theme.")
   , configPathOpt = new CLP.Option(["c", "config"], "Sets a custom config file.", "path")
-  , globalActivityOpt = new CLP.Option(["g", "global-activyt"], "Shows global activity calendar in the current repository.")
+  , globalActivityOpt = new CLP.Option(["g", "global-activity"], "Shows global activity calendar in the current repository.")
+  , firstDayOpt = new CLP.Option(["d", "first-day"], "Sets the first day of the week.", "day", "Sun")
   , parser = new CLP({
         name: "Git Stats"
       , version: Package.version
@@ -45,6 +44,7 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
       , authorsOpt
       , globalActivityOpt
       , configPathOpt
+      , firstDayOpt
     ])
   , options = null
   ;
@@ -94,6 +94,7 @@ if (authorsOpt.is_provided) {
     options.no_ansi = noAnsiOpt.is_provided;
     options.radius = (process.stdout.rows / 2) - 4;
 } else {
+    options.firstDay = firstDayOpt.value;
     options.theme = noAnsiOpt.is_provided ? null
                   : lightOpt.is_provided ? "LIGHT": "DARK"
                   ;
