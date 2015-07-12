@@ -103,6 +103,15 @@ if (dataPathOpt.is_provided) {
     }
 }
 
+if (GitStats.config.authors) {
+    authorsOpt.is_provided = true;
+}
+
+if (GitStats.config.global_activity) {
+    globalActivityOpt.is_provided = true;
+}
+
+
 // --record
 if (recordOpt.is_provided) {
 
