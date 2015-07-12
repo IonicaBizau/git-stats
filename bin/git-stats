@@ -5,6 +5,7 @@ var GitStats = new (require("../lib"))()
   , Moment = require("moment")
   , Logger = require("bug-killer")
   , CLP = require("clp")
+  , Abs = require("abs")
   , Package = require("../package")
   ;
 
@@ -20,6 +21,7 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
   , authorsOpt = new CLP.Option(["a", "authors"], "Shows a pie chart with the author related contributions in the current repository.")
   , noAnsiOpt = new CLP.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
   , lightOpt = new CLP.Option(["l", "light"], "Enables the light theme.")
+  , configPathOpt = new CLP.Option(["c", "config"], "Sets a custom config file.", "path")
   , globalActivityOpt = new CLP.Option(["g", "global-activyt"], "Shows global activity calendar in the current repository.")
   , parser = new CLP({
         name: "Git Stats"
@@ -42,10 +44,14 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
       , recordOpt
       , authorsOpt
       , globalActivityOpt
+      , configPathOpt
     ])
   , options = null
   ;
 
+if (configPathOpt.is_provided) {
+    GitStats.path = Abs(configPathOpt.value);
+}
 
 // --record
 if (recordOpt.is_provided) {
