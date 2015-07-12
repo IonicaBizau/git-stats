@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Dependencies
-var GitStats = require("../lib")
+var GitStats = new (require("../lib"))()
   , Moment = require("moment")
   , Logger = require("bug-killer")
   , CLP = require("clp")
