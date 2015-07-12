@@ -38,9 +38,6 @@ const CONFIG_PATH = Abs("~/.git-stats-config.json")
 
         // No global activity by default
       , global_activity: false
-
-        // Show only the user contributions calendar
-      , calendar: true
       }
     ;
 
