@@ -160,8 +160,10 @@ if (!authorsOpt.is_provided || globalActivityOpt.is_provided) {
     // This can be a string or an object
     if (/^object|string$/.test(Typpy(GitStats.config.theme))) {
         options.theme = GitStats.config.theme;
-        if (!/^DARK|LIGHT$/.test(options.theme)) {
-            options.theme = null;
+        if (typeof GitStats.config.theme === "string") {
+            if (!/^DARK|LIGHT$/.test(options.theme)) {
+                options.theme = null;
+            }
         }
     } else {
         options.theme = noAnsiOpt.is_provided ? null
