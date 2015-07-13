@@ -33,24 +33,24 @@
   },
   "homepage": "https://github.com/IonicaBizau/git-stats",
   "dependencies": {
-    "bug-killer": "^4.0.0",
-    "clp": "^3.0.0",
-    "moment": "^2.9.0",
-    "ul": "^5.0.0",
-    "r-json": "^1.0.0",
-    "w-json": "^1.0.0",
-    "is-there": "^4.0.0",
-    "cli-pie": "^2.0.0",
-    "cli-gh-cal": "^1.0.0",
     "abs": "^1.0.0",
-    "gry": "^4.0.0",
-    "gitlog-parser": "0.0.2",
-    "progress": "1.1.8",
+    "bug-killer": "^4.0.0",
+    "cli-gh-cal": "^1.0.0",
+    "cli-pie": "^2.0.0",
+    "clp": "^3.0.0",
     "deffy": "2.0.0",
-    "typpy": "2.0.0"
+    "gitlog-parser": "0.0.4",
+    "gry": "^4.0.0",
+    "is-there": "^4.0.0",
+    "moment": "^2.9.0",
+    "progress": "1.1.8",
+    "r-json": "^1.0.0",
+    "typpy": "2.0.0",
+    "ul": "^5.0.0",
+    "w-json": "^1.0.0"
   },
   "blah": {
-      "h_img": "http://i.imgur.com/Q7TQYHx.png"
-    , "ex_img": "http://i.imgur.com/LfLJAaE.png"
+    "h_img": "http://i.imgur.com/Q7TQYHx.png",
+    "ex_img": "http://i.imgur.com/LfLJAaE.png"
   }
 }
