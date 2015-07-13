@@ -172,7 +172,6 @@ if (!authorsOpt.is_provided || globalActivityOpt.is_provided) {
     }
 }
 
-
 function display (err, data) {
     if (err) { return Logger.log(err, "error"); }
     process.stdout.write(data + "\n");
