@@ -47,7 +47,6 @@
     "gitlog-parser": "0.0.2",
     "progress": "1.1.8",
     "deffy": "2.0.0",
-    "typpy": "2.0.0",
-    "lowdb": "0.10.1"
+    "typpy": "2.0.0"
   }
 }
