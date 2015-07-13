@@ -1,7 +1,7 @@
 {
   "name": "git-stats",
   "version": "2.0.0",
-  "description": "A GitHub-like contributions calendar, but locally, with all your git commits.",
+  "description": "Local git statistics, including a GitHub-like contributions calendars.",
   "main": "lib/index.js",
   "bin": {
     "git-stats": "./bin/git-stats"
@@ -48,5 +48,9 @@
     "progress": "1.1.8",
     "deffy": "2.0.0",
     "typpy": "2.0.0"
+  },
+  "blah": {
+      "h_img": "http://i.imgur.com/Q7TQYHx.png"
+    , "ex_img": "http://i.imgur.com/LfLJAaE.png"
   }
 }
