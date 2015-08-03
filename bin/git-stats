@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 // Dependencies
-var GitStats = new (require("../lib"))()
+var GitStatsLib = require("../lib")
+  , GitStats = new GitStatsLib()
   , Ul = require("ul")
   , Moment = require("moment")
   , Logger = require("bug-killer")
@@ -13,33 +14,8 @@ var GitStats = new (require("../lib"))()
   ;
 
 // Constants
-const CONFIG_PATH = Abs("~/.git-stats-config.json")
-    , DEFAULT_CONFIG = {
-        // Dark theme by default
-        theme: "DARK"
-
-        // This defaults in library
-      , path: undefined
-
-        // This defaults in cli-gh-cal
-      , first_day: undefined
-
-        // This defaults to *one year ago*
-      , since: undefined
-
-        // This defaults to *now*
-      , until: undefined
-
-        // This defaults to "DARK" -- this can be a
-        // string or an object
-      , theme: undefined
-
-        // Don't show authors by default
-      , authors: false
-
-        // No global activity by default
-      , global_activity: false
-      }
+const CONFIG_PATH = GitStatsLib.CONFIG_PATH
+    , DEFAULT_CONFIG = GitStatsLib.DEFAULT_CONFIG
     ;
 
 // Configurations
