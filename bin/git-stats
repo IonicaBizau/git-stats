@@ -51,7 +51,7 @@ var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this
           , "git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now"
           , "git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012"
         ]
-      , docs_url: "https://github.com/IonicaBizau/git-stats"
+      , docs_url: Package.homepage
       , notes: "Your commit history is kept in ~/.git-stats by default. You can create ~/.git-stats-config to specify different defaults."
       , process: true
     }, [
