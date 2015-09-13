@@ -6,7 +6,7 @@ var GitStatsLib = require("../lib")
   , Ul = require("ul")
   , Moment = require("moment")
   , Logger = require("bug-killer")
-  , CLP = require("clp")
+  , Clp = require("clp")
   , Abs = require("abs")
   , Typpy = require("typpy")
   , Package = require("../package")
@@ -32,16 +32,16 @@ try {
 GitStats.config = Ul.deepMerge(GitStats.config, DEFAULT_CONFIG);
 
 // Parse the command line arguments
-var recordOpt = new CLP.Option(["record"], "Records a new commit. Don't use this unless you are a mad scientist. If you are a developer, just use this option as part of the module.", "data")
-  , sinceDateOpt = new CLP.Option(["s", "since"], "Optional start date.", "date", GitStats.config.since)
-  , untilDateOpt = new CLP.Option(["u", "until"], "Optional end date.", "date", GitStats.config.until)
-  , authorsOpt = new CLP.Option(["a", "authors"], "Shows a pie chart with the author related contributions in the current repository.")
-  , noAnsiOpt = new CLP.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
-  , lightOpt = new CLP.Option(["l", "light"], "Enables the light theme.")
-  , dataPathOpt = new CLP.Option(["d", "data"], "Sets a custom data store file.", "path", GitStats.config.path)
-  , globalActivityOpt = new CLP.Option(["g", "global-activity"], "Shows global activity calendar in the current repository.")
-  , firstDayOpt = new CLP.Option(["f", "first-day"], "Sets the first day of the week.", "day", GitStats.config.first_day)
-  , parser = new CLP({
+var recordOpt = new Clp.Option(["record"], "Records a new commit. Don't use this unless you are a mad scientist. If you are a developer, just use this option as part of the module.", "data")
+  , sinceDateOpt = new Clp.Option(["s", "since"], "Optional start date.", "date", GitStats.config.since)
+  , untilDateOpt = new Clp.Option(["u", "until"], "Optional end date.", "date", GitStats.config.until)
+  , authorsOpt = new Clp.Option(["a", "authors"], "Shows a pie chart with the author related contributions in the current repository.")
+  , noAnsiOpt = new Clp.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
+  , lightOpt = new Clp.Option(["l", "light"], "Enables the light theme.")
+  , dataPathOpt = new Clp.Option(["d", "data"], "Sets a custom data store file.", "path", GitStats.config.path)
+  , globalActivityOpt = new Clp.Option(["g", "global-activity"], "Shows global activity calendar in the current repository.")
+  , firstDayOpt = new Clp.Option(["f", "first-day"], "Sets the first day of the week.", "day", GitStats.config.first_day)
+  , parser = new Clp({
         name: "Git Stats"
       , version: Package.version
       , exe: Package.name
