@@ -49,7 +49,7 @@ var GitStats = require("git-stats");
 GitStats.ansiCalendar(opts, fn);
 ```
 
-In `2.x.x` GitStats is a constructor. That allows us to create as many `git-stats`
+In `2.x.x`, `GitStats` is a constructor. That allows us to create as many `git-stats`
 instances we want.
 
 ```js
