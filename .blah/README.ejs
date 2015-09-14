@@ -48,9 +48,6 @@ I'd be curious to see your calendar with all your commits. Ping me on Twitter ([
 ## Contents
 
  - [Installation](#installation)
- - [Catching the `git commit` command](#catching-the-git-commit-command)
-   - [Using `git` hooks](#using-git-hooks)
-   - [Overriding the `git` command](#overriding-the-git-command)
  - [Usage](#usage)
    - [Importing and deleting commits](#importing-and-deleting-commits)
    - [Importing all the commits from GitHub and BitBucket](#importing-all-the-commits-from-github-and-bitbucket)
@@ -67,6 +64,7 @@ You can install the package globally and use it as command line tool:
 # Install the package globally
 npm i -g <%- _.pack.name %>
 # Initialize git hooks
+# This is for tracking the new commits
 curl -s https://raw.githubusercontent.com/IonicaBizau/git-stats/master/scripts/init-git-post-commit | bash
 ```
 
@@ -75,42 +73,12 @@ Then, run `<%- _.pack.name %> --help` and see what the cli tool can do.
 
 ```sh
 $ git-stats --help
-git-stats --help
-A GitHub-like contributions calendar, but locally, with all your git commits.
-
-usage: git-stats [start] [end] [options] [data]
-
-start:                    Optional start date
-end:                      Optional end date
-
-options:
-  -v                      Displays version information.
-  -h --help               Displays this help.
-  --no-ansi               Doesn't use ANSI colors in the squares.
-  --record <data>         Records a new commit. Don't use this unless you are
-                          a mad scientist. If you are a developer, just use this
-                          option as part of the module.
-  --light                 Enable the light theme.
-
-examples:
-   git-stats # Displays your commit calendar
-   git-stats -v
-   git-stats -h
-   git-stats --light # Light mode
-   git-stats '1 January 2012' # All the commits from 1 January 2012, to now
-   git-stats '1 January 2012' '31 December 2012' # All the commits from 2012
-
-Your commit history is kept in the .git-stats, in your $HOME directory (~/)
-
-Documentation can be found at https://github.com/IonicaBizau/git-stats
+TODO
 ```
-
-If you run `git-stats` to display graph on Windows, please use a terminal that can properly display ANSI colors.
-Cygwin Terminal is known to work, while Windows Command Prompt and Git Bash do not.
 
 ### Importing and deleting commits
 I know it's not nice to start your git commit calendar from scratch. That's why I
-created a `git-stats-importer` that imports or deletes the commits from a repository.
+created [`git-stats-importer`](https://github.com/IonicaBizau/git-stats-importer)--a tool which imports or deletes the commits from selected repositories.
 
 Check it out here: https://github.com/IonicaBizau/git-stats-importer
 
@@ -131,7 +99,7 @@ $ git-stats-importer --delete
 ```
 
 ### Importing all the commits from GitHub and BitBucket
-Yes, you read correctly! That's also possible. I [built a tool for that too](https://github.com/IonicaBizau/repository-downloader)!
+Yes, that's also possible. I [built a tool which downloads and then imports all the commits you have pushed to GitHub and BitBucket](https://github.com/IonicaBizau/repository-downloader)!
 
 ```sh
 # Download the repository downloader
@@ -146,17 +114,61 @@ $ npm install
 # Start downloading and importing
 $ ./start
 ```
-### See the GitHub Contributions calendar
-There is a solution for that, too! :smile: It's called [`ghcal`](https://github.com/IonicaBizau/ghcal).
+### What about the GitHub Contributions calendar?
+If you want to visualize the calendars that appear on GitHub profiles, you can do that using [`ghcal`](https://github.com/IonicaBizau/ghcal).
 
 ```sh
 # Install ghcal
 $ npm install -g ghcal
 
-# Checkout my contributions
-$ ghcal ionicabizau
+# Check out @alysonla's contributions
+$ ghcal -u alysonla
 ```
+
 For more detailed documentation, check out the repository: https://github.com/IonicaBizau/ghcal.
+
+If want to get even more GitHub stats in your terminal, you may want to try [`github-stats`](https://github.com/Ioni56caBizau/github-stats)--this is like `git-stats` but with data taken from GitHub.
+
+## Using the configuration file
+You can tweak the   git-stats behavior using a configuration file in your home directory: `~/.git-stats-config.json`.
+
+This file will contain a JSON object like below (in this example comments are added to explain what's going on, but you should not include them since the JSON format doesn't support such comments). Defaults are listed.
+
+```js
+{
+    // "DARK", "LIGHT" or an object interpreted by IonicaBizau/node-git-stats-colors
+    "theme": "DARK"
+
+    // The file where the commit hashes will be stored
+  , "path": "~/.git-stats"
+
+    // First day of the week
+  , first_day: "Sun"
+
+    // This defaults to *one year ago*
+    // It can be any parsable date
+  , since: undefined
+
+    // This defaults to *now*
+    // It can be any parsable date
+  , until: undefined
+
+    // Don't show authors by default
+    // If true, this will enable the authors pie
+  , authors: false
+
+    // No global activity by default
+    // If true, this will enable the global activity calendar in the current project
+  , global_activity: false
+}
+```
+
+## Cross-platform compatibility
+
+`git-stats` is working fine in terminal emulators supporting ANSI styles. It should work fine on Linux and OS X.
+
+If you run `git-stats` to display graph on Windows, please use a terminal that can properly display ANSI colors.
+Cygwin Terminal is known to work, while Windows Command Prompt and Git Bash do not. Improvements are more than welcome! :dizzy:
 
 <% // Show the example if there is one %>
 <% if (example) { %>
