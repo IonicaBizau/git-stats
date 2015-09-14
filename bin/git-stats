@@ -20,16 +20,14 @@ const CONFIG_PATH = GitStatsLib.CONFIG_PATH
 
 // Configurations
 Moment.suppressDeprecationWarnings = true;
-GitStats.config = {};
+
 try {
-    GitStats.config = ReadJson(CONFIG_PATH);
+    GitStats.initConfig();
 } catch (err) {
     if (err.code !== "ENOENT") {
-        Logger.log("Failed to read the config file: " + err.stack, "warn");
+        Logger.log("Failed to read the config file:\n" + err.stack, "warn");
     }
 }
-
-GitStats.config = Ul.deepMerge(GitStats.config, DEFAULT_CONFIG);
 
 // Parse the command line arguments
 var recordOpt = new Clp.Option(["record"], "Records a new commit. Don't use this unless you are a mad scientist. If you are a developer, just use this option as part of the module.", "data")
@@ -85,10 +83,8 @@ if (GitStats.config.global_activity) {
     globalActivityOpt.is_provided = true;
 }
 
-
 // --record
 if (recordOpt.is_provided) {
-
     try {
         options = JSON.parse(recordOpt.value.replace(/^\"|\"$/g, ""));
     } catch (e) {
