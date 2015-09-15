@@ -9,6 +9,22 @@ You can see below the API reference of this module.
 #### Return
 - **GitStats** The `GitStats` instance.
 
+### `getConfig(callback)`
+Fetches the configuration object from file (`~/.git-stats-config.json`).
+
+#### Params
+- **Function** `callback`: The callback function.
+
+#### Return
+- **Object|Undefined** If no callback is provided, the configuration object will be returned.
+
+### `initConfig(input, callback)`
+Inits the configuration field (`this.config`).
+
+#### Params
+- **Object|String** `input`: The path to a custom git-stats configuration file or the configuration object.
+- **Function** `callback`: The callback function.
+
 ### `record(data, callback)`
 Records a new commit.
 
@@ -17,6 +33,23 @@ Records a new commit.
  - `date` (String|Date): The date object or a string in a format that can be parsed.
  - `url` (String): The repository remote url.
  - `hash` (String): The commit hash.
+ - `_data` (Object): If this field is provided, it should be the content of the git-stats data file as object. It will be modified in-memory and then returned.
+ - `save` (Boolean): If `false`, the result will *not* be saved in the file.
+- **Function** `callback`: The callback function.
+
+#### Return
+- **GitStats** The `GitStats` instance.
+
+### `record(data, callback)`
+removeCommit
+Deletes a specifc commit from the history.
+
+#### Params
+- **Object** `data`: The commit data containing:
+ - `date` (String|Date): The date object or a string in a format that can be parsed.
+ - `hash` (String): The commit hash.
+ - `_data` (Object): If this field is provided, it should be the content of the git-stats data file as object. It will be modified in-memory and then returned.
+ - `save` (Boolean): If `false`, the result will *not* be saved in the file.
 - **Function** `callback`: The callback function.
 
 #### Return
