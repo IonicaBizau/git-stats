@@ -130,7 +130,7 @@ if (authorsOpt.is_provided) {
 if (!authorsOpt.is_provided || globalActivityOpt.is_provided) {
     options.firstDay = firstDayOpt.value;
     // This can be a string or an object
-    if (/^object|string$/.test(Typpy(GitStats.config.theme))) {
+    if (/^object|string$/.test(Typpy(GitStats.config.theme)) && !noAnsiOpt.is_provided && !lightOpt.is_provided) {
         options.theme = GitStats.config.theme;
         if (typeof GitStats.config.theme === "string") {
             if (!/^DARK|LIGHT$/.test(options.theme)) {
