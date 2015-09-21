@@ -16,7 +16,7 @@
     "William Boman <william@redwill.se>",
     "Fabian Furger <mystyfly@gmail.com>"
   ],
-  "license": "MIT",
+  "license": "KINDLY",
   "devDependencies": {},
   "repository": {
     "type": "git",
@@ -51,6 +51,6 @@
   },
   "blah": {
     "h_img": "http://i.imgur.com/Q7TQYHx.png",
-    "ex_img": "http://i.imgur.com/LfLJAaE.png"
+    "ex_img": "http://i.imgur.com/PpM0i3v.png"
   }
 }
