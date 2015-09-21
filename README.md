@@ -21,7 +21,7 @@ Local git statistics, including a GitHub-like contributions calendars.
 
 I'd be curious to see your calendar with all your commits. Ping me on Twitter ([**@IonicaBizau**](https://twitter.com/IonicaBizau)). :smile: Until then, here's my calendar:
 
-![git-stats](http://i.imgur.com/LfLJAaE.png)
+![git-stats](http://i.imgur.com/PpM0i3v.png)
 
 ## Contents
 
@@ -49,7 +49,34 @@ Then, run `git-stats --help` and see what the cli tool can do.
 
 ```sh
 $ git-stats --help
-TODO
+Usage: git-stats [options]
+
+Options:
+  -s, --since <date>     Optional start date.
+  -u, --until <date>     Optional end date.
+  -n, --no-ansi          Forces the tool not to use ANSI styles.
+  -l, --light            Enables the light theme.
+  -a, --authors          Shows a pie chart with the author related
+                         contributions in the current repository.
+  -g, --global-activity  Shows global activity calendar in the current
+                         repository.
+  -d, --data <path>      Sets a custom data store file.
+  -f, --first-day <day>  Sets the first day of the week.
+  --record <data>        Records a new commit. Don't use this unless you
+                         are a mad scientist. If you are a developer, just
+                         use this option as part of the module.
+  -h, --help             Displays this help.
+  -v, --version          Displays version information.
+
+Examples:
+  git-stats # Default behavior (stats in the last year)
+  git-stats -l # Light mode
+  git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now
+  git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012
+
+Your commit history is kept in ~/.git-stats by default. You can create ~/.git-stats-config.json to specify different defaults.
+
+Documentation can be found at https://github.com/IonicaBizau/git-stats
 ```
 
 ### Importing and deleting commits
