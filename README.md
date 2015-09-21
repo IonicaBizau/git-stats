@@ -211,4 +211,4 @@ a copy of the license.
 [website]: http://ionicabizau.net
 [docs]: /DOCUMENTATION.md
 [paypal-donations]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MG98D7NPFZ3MG
-[donate-now]: http://i.imgur.com/jioicaN.png
+[donate-now]: http://i.imgur.com/6cMbHOC.png
