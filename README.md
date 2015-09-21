@@ -81,7 +81,7 @@ Documentation can be found at https://github.com/IonicaBizau/git-stats
 
 ### Importing and deleting commits
 I know it's not nice to start your git commit calendar from scratch. That's why I
-created [`git-stats-importer`](https://github.com/IonicaBizau/git-stats-importer)--a tool which imports or deletes the commits from selected repositories.
+created [`git-stats-importer`](https://github.com/IonicaBizau/git-stats-importer)–a tool which imports or deletes the commits from selected repositories.
 
 Check it out here: https://github.com/IonicaBizau/git-stats-importer
 
