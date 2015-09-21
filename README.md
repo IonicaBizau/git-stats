@@ -79,6 +79,8 @@ Your commit history is kept in ~/.git-stats by default. You can create ~/.git-st
 Documentation can be found at https://github.com/IonicaBizau/git-stats
 ```
 
+## Usage
+
 ### Importing and deleting commits
 I know it's not nice to start your git commit calendar from scratch. That's why I
 created [`git-stats-importer`](https://github.com/IonicaBizau/git-stats-importer)–a tool which imports or deletes the commits from selected repositories.
@@ -209,4 +211,4 @@ a copy of the license.
 [website]: http://ionicabizau.net
 [docs]: /DOCUMENTATION.md
 [paypal-donations]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MG98D7NPFZ3MG
-[donate-now]: http://i.imgur.com/6cMbHOC.png
+[donate-now]: http://i.imgur.com/jioicaN.png
