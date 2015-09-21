@@ -57,11 +57,11 @@ var recordOpt = new Clp.Option(["record"], "Records a new commit. Don't use this
       , untilDateOpt
       , noAnsiOpt
       , lightOpt
-      , recordOpt
       , authorsOpt
       , globalActivityOpt
       , dataPathOpt
       , firstDayOpt
+      , recordOpt
     ])
   , options = null
   ;
