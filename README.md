@@ -17,7 +17,7 @@
 
 # `$ git-stats` [![Donate now][donate-now]][paypal-donations]
 
-Local git statistics, including a GitHub-like contributions calendars.
+Local git statistics including GitHub-like contributions calendars.
 
 I'd be curious to see your calendar with all your commits. Ping me on Twitter ([**@IonicaBizau**](https://twitter.com/IonicaBizau)). :smile: Until then, here's my calendar:
 

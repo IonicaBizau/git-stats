@@ -1,7 +1,7 @@
 {
   "name": "git-stats",
-  "version": "2.0.0",
-  "description": "Local git statistics, including a GitHub-like contributions calendars.",
+  "version": "2.0.1",
+  "description": "Local git statistics including GitHub-like contributions calendars.",
   "main": "lib/index.js",
   "bin": {
     "git-stats": "./bin/git-stats"
@@ -43,7 +43,6 @@
     "gry": "^4.0.0",
     "is-there": "^4.0.0",
     "moment": "^2.9.0",
-    "progress": "1.1.8",
     "r-json": "^1.0.0",
     "typpy": "^2.1.0",
     "ul": "^5.0.0",
