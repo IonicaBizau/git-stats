@@ -132,7 +132,7 @@ $ ghcal -u alysonla
 
 For more detailed documentation, check out the repository: https://github.com/IonicaBizau/ghcal.
 
-If want to get even more GitHub stats in your terminal, you may want to try [`github-stats`](https://github.com/Ioni56caBizau/github-stats)--this is like `git-stats` but with data taken from GitHub.
+If want to get even more GitHub stats in your terminal, you may want to try [`github-stats`](https://github.com/IonicaBizau/github-stats)--this is like `git-stats` but with data taken from GitHub.
 
 ## Using the configuration file
 You can tweak the   git-stats behavior using a configuration file in your home directory: `~/.git-stats-config.json`.
