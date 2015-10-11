@@ -63,6 +63,7 @@ var recordOpt = new Clp.Option(["record"], "Records a new commit. Don't use this
       , dataPathOpt
       , firstDayOpt
       , recordOpt
+      , rawOpt
     ])
   , options = null
   ;
@@ -148,6 +149,9 @@ if (!authorsOpt.is_provided || globalActivityOpt.is_provided) {
 
 function display (err, data) {
     if (err) { return Logger.log(err, "error"); }
+    if (typeof data !== "string") {
+        data = JSON.stringify(data);
+    }
     process.stdout.write(data + "\n");
 }
 
