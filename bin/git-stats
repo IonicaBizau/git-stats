@@ -39,6 +39,7 @@ var recordOpt = new Clp.Option(["record"], "Records a new commit. Don't use this
   , dataPathOpt = new Clp.Option(["d", "data"], "Sets a custom data store file.", "path", GitStats.config.path)
   , globalActivityOpt = new Clp.Option(["g", "global-activity"], "Shows global activity calendar in the current repository.")
   , firstDayOpt = new Clp.Option(["f", "first-day"], "Sets the first day of the week.", "day", GitStats.config.first_day)
+  , rawOpt = new Clp.Option(["r", "raw"], "Outputs a dump of the raw JSON data.")
   , parser = new Clp({
         name: "Git Stats"
       , version: Package.version
@@ -102,6 +103,7 @@ if (recordOpt.is_provided) {
 options = {
     start: sinceDateOpt.value ? Moment(sinceDateOpt.value) : Moment().subtract(1, "years")
   , end: untilDateOpt.value ? Moment(untilDateOpt.value) : Moment()
+  , raw: rawOpt.is_provided
 };
 
 // Validate the dates
@@ -152,6 +154,7 @@ function display (err, data) {
 if (globalActivityOpt.is_provided) {
     return GitStats.globalActivity(options, display);
 }
+
 
 // Show the graphs
 GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, display);
