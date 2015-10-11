@@ -199,6 +199,9 @@ g1.ansiCalendar({
 
 For full API reference, see the [DOCUMENTATION.md][docs] file.
 
+## Press Highlights
+ - [*A GitHub-like contributions calendar, but locally, with all your git commits*, The Changelog](https://changelog.com/github-like-contributions-calendar-locally-git-commits/)
+
 ## How to contribute
 Have an idea? Found a bug? See [how to contribute][contributing].
 
