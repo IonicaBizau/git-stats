@@ -46,7 +46,8 @@
     "r-json": "^1.0.0",
     "typpy": "^2.1.0",
     "ul": "^5.0.0",
-    "w-json": "^1.0.0"
+    "w-json": "^1.0.0",
+    "iterate-object": "^1.1.0"
   },
   "blah": {
     "h_img": "http://i.imgur.com/Q7TQYHx.png",
