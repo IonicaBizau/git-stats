@@ -48,7 +48,7 @@ curl -s https://raw.githubusercontent.com/IonicaBizau/git-stats/master/scripts/i
 Then, run `git-stats --help` and see what the cli tool can do.
 
 ```sh
-$ git-stats --help
+$ git-stats -h
 Usage: git-stats [options]
 
 Options:
@@ -65,6 +65,7 @@ Options:
   --record <data>        Records a new commit. Don't use this unless you
                          are a mad scientist. If you are a developer, just
                          use this option as part of the module.
+  -r, --raw              Outputs a dump of the raw JSON data.
   -h, --help             Displays this help.
   -v, --version          Displays version information.
 
