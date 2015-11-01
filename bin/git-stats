@@ -24,7 +24,7 @@ Moment.suppressDeprecationWarnings = true;
 try {
     GitStats.initConfig();
 } catch (err) {
-    if (err.code !== "ENOENT") {
+    if (err.code !== "MODULE_NOT_FOUND") {
         Logger.log("Failed to read the config file:\n" + err.stack, "warn");
     }
 }
