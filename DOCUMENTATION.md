@@ -10,7 +10,7 @@ You can see below the API reference of this module.
 - **GitStats** The `GitStats` instance.
 
 ### `getConfig(callback)`
-Fetches the configuration object from file (`~/.git-stats-config.json`).
+Fetches the configuration object from file (`~/.git-stats-config.js`).
 
 #### Params
 - **Function** `callback`: The callback function.
@@ -46,7 +46,7 @@ Deletes a specifc commit from the history.
 
 #### Params
 - **Object** `data`: The commit data containing:
- - `date` (String|Date): The date object or a string in a format that can be parsed.
+ - `date` (String|Date): The date object or a string in a format that can be parsed. If not provided, the hash object will be searched in all dates.
  - `hash` (String): The commit hash.
  - `_data` (Object): If this field is provided, it should be the content of the git-stats data file as object. It will be modified in-memory and then returned.
  - `save` (Boolean): If `false`, the result will *not* be saved in the file.
@@ -107,11 +107,11 @@ Creates the calendar data for the provided period (default: *last year*).
 #### Return
 - **GitStats** The `GitStats` instance.
 
-### `ansiCalendar(data, callback)`
+### `ansiCalendar(options, callback)`
 Creates the ANSI contributions calendar.
 
 #### Params
-- **Object** `data`: The object passed to the `calendar` method.
+- **Object** `options`: The object passed to the `calendar` method.
 - **Function** `callback`: The callback function.
 
 #### Return
@@ -136,6 +136,7 @@ Creates the authors pie.
  - `repo` (String): The repository path.
  - `radius` (Number): The pie radius.
  - `no_ansi` (Boolean): If `true`, the pie will not contain ansi characters.
+ - `raw` (Boolean): If `true`, the raw JSON will be displayed.
 - **Function** `callback`: The callback function.
 
 #### Return
