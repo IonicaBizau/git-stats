@@ -1,6 +1,6 @@
 {
   "name": "git-stats",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "description": "Local git statistics including GitHub-like contributions calendars.",
   "main": "lib/index.js",
   "bin": {
@@ -16,7 +16,7 @@
     "William Boman <william@redwill.se>",
     "Fabian Furger <mystyfly@gmail.com>"
   ],
-  "license": "KINDLY",
+  "license": "MIT",
   "devDependencies": {},
   "repository": {
     "type": "git",
