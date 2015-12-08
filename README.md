@@ -26,7 +26,7 @@ You can install the package globally and use it as command line tool:
 
 ```sh
 # Install the package globally
-npm i -g <%- _.pack.name %>
+npm i -g git-stats
 # Initialize git hooks
 # This is for tracking the new commits
 curl -s https://raw.githubusercontent.com/IonicaBizau/git-stats/master/scripts/init-git-post-commit | bash
