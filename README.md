@@ -1,8 +1,8 @@
 [![git-stats](http://i.imgur.com/Q7TQYHx.png)](#)
 
-# `$ git-stats` [![Support this project][donate-now]][paypal-donations]
+# `$ git-stats` [![PayPal](https://img.shields.io/badge/%24-paypal-f39c12.svg)][paypal-donations] [![Version](https://img.shields.io/npm/v/git-stats.svg)](https://www.npmjs.com/package/git-stats) [![Downloads](https://img.shields.io/npm/dt/git-stats.svg)](https://www.npmjs.com/package/git-stats) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
 
-Local git statistics including GitHub-like contributions calendars.
+> Local git statistics including GitHub-like contributions calendars.
 
 I'd be curious to see your calendar with all your commits. Ping me on Twitter ([**@IonicaBizau**](https://twitter.com/IonicaBizau)). :smile: Until then, here's my calendar:
 
