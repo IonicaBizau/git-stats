@@ -20,13 +20,11 @@ function migrate() {
         Logger.log(e);
     }
 
-    if (data.commits) {
-        return;
-    }
-
-    var newStats = { commits: {} };
+    data.commits = data.commits || {};
+    var newStats = { commits: data.commits };
+    delete data.commits;
     Object.keys(data).forEach(function (day) {
-        var cDay = newStats.commits[day] = {};
+        var cDay = newStats.commits[day] = newStats.commits[day] || {};
         Object.keys(data[day]).map(function (c) {
             Object.keys(data[day][c]).map(function (h) {
                 cDay[h] = 1;
@@ -38,3 +36,4 @@ function migrate() {
 }
 
 migrate();
+

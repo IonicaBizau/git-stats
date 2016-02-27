@@ -1,6 +1,6 @@
 {
   "name": "git-stats",
-  "version": "2.9.2",
+  "version": "2.9.3",
   "description": "Local git statistics including GitHub-like contributions calendars.",
   "main": "lib/index.js",
   "bin": {
