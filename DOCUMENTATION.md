@@ -1,4 +1,5 @@
 ## Documentation
+
 You can see below the API reference of this module.
 
 ### `GitStats(dataPath)`
@@ -136,6 +137,21 @@ Creates the authors pie.
  - `repo` (String): The repository path.
  - `radius` (Number): The pie radius.
  - `no_ansi` (Boolean): If `true`, the pie will not contain ansi characters.
+ - `raw` (Boolean): If `true`, the raw JSON will be displayed.
+- **Function** `callback`: The callback function.
+
+#### Return
+- **GitStats** The `GitStats` instance.
+
+### `globalActivity(options, callback)`
+Creates the global contributions calendar (all commits made by all committers).
+
+#### Params
+- **String|Object** `options`: The repo path or an object containing the following fields:
+ - `repo` (String): The repository path.
+ - `start` (String): The start date.
+ - `end` (String): The end date.
+ - `theme` (String|Object): The calendar theme.
  - `raw` (Boolean): If `true`, the raw JSON will be displayed.
 - **Function** `callback`: The callback function.
 

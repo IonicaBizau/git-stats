@@ -1,8 +1,10 @@
+
 [![git-stats](http://i.imgur.com/Q7TQYHx.png)](#)
 
 # `$ git-stats` [![PayPal](https://img.shields.io/badge/%24-paypal-f39c12.svg)][paypal-donations] [![Version](https://img.shields.io/npm/v/git-stats.svg)](https://www.npmjs.com/package/git-stats) [![Downloads](https://img.shields.io/npm/dt/git-stats.svg)](https://www.npmjs.com/package/git-stats) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
 
 > Local git statistics including GitHub-like contributions calendars.
+
 
 I'd be curious to see your calendar with all your commits. Ping me on Twitter ([**@IonicaBizau**](https://twitter.com/IonicaBizau)). :smile: Until then, here's my calendar:
 
@@ -12,19 +14,21 @@ I'd be curious to see your calendar with all your commits. Ping me on Twitter ([
 
  - [Installation](#installation)
  - [Usage](#usage)
-    
+
      - [Importing and deleting commits](#importing-and-deleting-commits)
      - [Importing all the commits from GitHub and BitBucket](#importing-all-the-commits-from-github-and-bitbucket)
      - [What about the GitHub Contributions calendar?](#what-about-the-github-contributions-calendar)
-    
+
  - [Documentation](#documentation)
  - [How to contribute](#how-to-contribute)
 
-## Installation
+
+## :cloud: Installation
 
 You can install the package globally and use it as command line tool:
 
-```sh
+
+    ```sh
 # Install the package globally
 npm i -g git-stats
 # Initialize git hooks
@@ -32,29 +36,31 @@ npm i -g git-stats
 curl -s https://raw.githubusercontent.com/IonicaBizau/git-stats/master/scripts/init-git-post-commit | bash
 ```
 
+
 Then, run `git-stats --help` and see what the CLI tool can do.
 
-```sh
+
+```
 $ git-stats --help
 Usage: git-stats [options]
 
 Options:
-  -s, --since <date>     Optional start date.                             
-  -u, --until <date>     Optional end date.                               
-  -n, --no-ansi          Forces the tool not to use ANSI styles.          
-  -l, --light            Enables the light theme.                         
-  -a, --authors          Shows a pie chart with the author related        
-                         contributions in the current repository.         
-  -g, --global-activity  Shows global activity calendar in the current    
-                         repository.                                      
-  -d, --data <path>      Sets a custom data store file.                   
-  -f, --first-day <day>  Sets the first day of the week.                  
-  --record <data>        Records a new commit. Don't use this unless you  
+  -s, --since <date>     Optional start date.
+  -u, --until <date>     Optional end date.
+  -n, --no-ansi          Forces the tool not to use ANSI styles.
+  -l, --light            Enables the light theme.
+  -a, --authors          Shows a pie chart with the author related
+                         contributions in the current repository.
+  -g, --global-activity  Shows global activity calendar in the current
+                         repository.
+  -d, --data <path>      Sets a custom data store file.
+  -f, --first-day <day>  Sets the first day of the week.
+  --record <data>        Records a new commit. Don't use this unless you
                          are a mad scientist. If you are a developer, just
-                         use this option as part of the module.           
-  -r, --raw              Outputs a dump of the raw JSON data.             
-  -h, --help             Displays this help.                              
-  -v, --version          Displays version information.                    
+                         use this option as part of the module.
+  -r, --raw              Outputs a dump of the raw JSON data.
+  -h, --help             Displays this help.
+  -v, --version          Displays version information.
 
 Examples:
   git-stats # Default behavior (stats in the last year)
@@ -167,13 +173,17 @@ If you run `git-stats` to display graph on Windows, please use a terminal that c
 
 Cygwin Terminal is known to work, while Windows Command Prompt and Git Bash do not. Improvements are more than welcome! :dizzy:
 
-## Example
+
+## :clipboard: Example
+
 
 Here is an example how to use this package as library. To install it locally, as library, you can do that using `npm`:
 
 ```sh
 $ npm i --save git-stats
 ```
+
+
 
 ```js
 // Dependencies
@@ -190,23 +200,25 @@ g1.ansiCalendar({
 });
 ```
 
-## Documentation
+## :memo: Documentation
 
 For full API reference, see the [DOCUMENTATION.md][docs] file.
 
-## Press Highlights
+## :newspaper: Press Highlights
 
  - [*A GitHub-like contributions calendar, but locally, with all your git commits*, The Changelog](https://changelog.com/github-like-contributions-calendar-locally-git-commits/)
 
-## How to contribute
+
+## :yum: How to contribute
 Have an idea? Found a bug? See [how to contribute][contributing].
 
-## Where is this library used?
+## :dizzy: Where is this library used?
 If you are using this library in one of your projects, add it in this list. :sparkles:
 
- - [`git-stats-importer`](https://github.com/IonicaBizau/git-stats-importer)
 
-## License
+ - [`git-stats-importer`](https://github.com/IonicaBizau/git-stats-importer)—Imports your commits from a repository into git-stats history.
+
+## :scroll: License
 
 [MIT][license] © [Ionică Bizău][website]
 
