@@ -1,6 +1,6 @@
 {
   "name": "git-stats",
-  "version": "2.9.3",
+  "version": "2.9.4",
   "description": "Local git statistics including GitHub-like contributions calendars.",
   "main": "lib/index.js",
   "bin": {
@@ -232,5 +232,16 @@
         "[*A GitHub-like contributions calendar, but locally, with all your git commits*, The Changelog](https://changelog.com/github-like-contributions-calendar-locally-git-commits/)"
       ]
     }
-  }
+  },
+  "files": [
+    "bin/",
+    "app/",
+    "lib/",
+    "dist/",
+    "src/",
+    "resources/",
+    "menu/",
+    "cli.js",
+    "index.js"
+  ]
 }
