@@ -27,8 +27,7 @@ I'd be curious to see your calendar with all your commits. Ping me on Twitter ([
 
 You can install the package globally and use it as command line tool:
 
-
-    ```sh
+```sh
 # Install the package globally
 npm i -g git-stats
 # Initialize git hooks
