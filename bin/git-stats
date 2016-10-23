@@ -1,25 +1,23 @@
 #!/usr/bin/env node
+"use strict";
 
-// Dependencies
-var GitStatsLib = require("../lib")
-  , GitStats = new GitStatsLib()
-  , Ul = require("ul")
-  , Moment = require("moment")
-  , Logger = require("bug-killer")
-  , Clp = require("clp")
-  , Abs = require("abs")
-  , Typpy = require("typpy")
-  , Package = require("../package")
-  , ReadJson = require("r-json")
-  ;
-
-// Constants
-const CONFIG_PATH = GitStatsLib.CONFIG_PATH
-    , DEFAULT_CONFIG = GitStatsLib.DEFAULT_CONFIG
+const Tilda = require("tilda")
+    , GitStatsLib = require("..")
+    , Ul = require("ul")
+    , Moment = require("moment")
+    , Logger = require("bug-killer")
+    , Clp = require("clp")
+    , Abs = require("abs")
+    , Typpy = require("typpy")
+    , Package = require("../package")
+    , ReadJson = require("r-json")
     ;
 
-// Configurations
-Moment.suppressDeprecationWarnings = true;
+// Constants
+const GitStats = new GitStatsLib()
+    , CONFIG_PATH = GitStatsLib.CONFIG_PATH
+    , DEFAULT_CONFIG = GitStatsLib.DEFAULT_CONFIG
+    ;
 
 try {
     GitStats.initConfig();
@@ -29,136 +27,168 @@ try {
     }
 }
 
-// Parse the command line arguments
-var recordOpt = new Clp.Option(["record"], "Records a new commit. Don't use this unless you are a mad scientist. If you are a developer, just use this option as part of the module.", "data")
-  , sinceDateOpt = new Clp.Option(["s", "since"], "Optional start date.", "date", GitStats.config.since)
-  , untilDateOpt = new Clp.Option(["u", "until"], "Optional end date.", "date", GitStats.config.until)
-  , authorsOpt = new Clp.Option(["a", "authors"], "Shows a pie chart with the author related contributions in the current repository.")
-  , noAnsiOpt = new Clp.Option(["n", "no-ansi"], "Forces the tool not to use ANSI styles.")
-  , lightOpt = new Clp.Option(["l", "light"], "Enables the light theme.")
-  , dataPathOpt = new Clp.Option(["d", "data"], "Sets a custom data store file.", "path", GitStats.config.path)
-  , globalActivityOpt = new Clp.Option(["g", "global-activity"], "Shows global activity calendar in the current repository.")
-  , firstDayOpt = new Clp.Option(["f", "first-day"], "Sets the first day of the week.", "day", GitStats.config.first_day)
-  , rawOpt = new Clp.Option(["r", "raw"], "Outputs a dump of the raw JSON data.")
-  , parser = new Clp({
-        name: "Git Stats"
-      , version: Package.version
-      , exe: Package.name
-      , examples: [
-            "git-stats # Default behavior (stats in the last year)"
-          , "git-stats -l # Light mode"
-          , "git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now"
-          , "git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012"
-        ]
-      , docs_url: Package.homepage
-      , notes: "Your commit history is kept in ~/.git-stats by default. You can create ~/.git-stats-config.json to specify different defaults."
-      , process: true
-    }, [
-        sinceDateOpt
-      , untilDateOpt
-      , noAnsiOpt
-      , lightOpt
-      , authorsOpt
-      , globalActivityOpt
-      , dataPathOpt
-      , firstDayOpt
-      , recordOpt
-      , rawOpt
-    ])
-  , options = null
-  ;
+// Configurations
+Moment.suppressDeprecationWarnings = true;
 
-// Handle data path
-if (dataPathOpt.is_provided) {
-    GitStats.path = Abs(dataPathOpt.value);
-    GitStats.config.data_path = GitStats.path;
-    if (!IsThere(GitStats.path)) {
-        Logger.log("Cannot find the the specified data path file.", "warn");
-    }
-}
-
-if (GitStats.config.authors) {
-    authorsOpt.is_provided = true;
-}
-
-if (GitStats.config.global_activity) {
-    globalActivityOpt.is_provided = true;
-}
-
-// --record
-if (recordOpt.is_provided) {
-    try {
-        options = JSON.parse(recordOpt.value.replace(/^\"|\"$/g, ""));
-    } catch (e) {
-        Logger.log(e, "error");
-        return process.exit(1);
-    }
-
-    return GitStats.record(options, function (err) {
-        if (err) { return Logger.log(err, "error"); }
-        process.exit(0);
-    });
-}
-
-// Create the options
-options = {
-    start: sinceDateOpt.value ? Moment(sinceDateOpt.value) : Moment().subtract(1, "years")
-  , end: untilDateOpt.value ? Moment(untilDateOpt.value) : Moment()
-  , raw: rawOpt.is_provided
-};
-
-// Validate the dates
-if (!options.start || !options.start.isValid()) {
-    options.start = Moment().subtract(1, "years");
-    Logger.log("Invalid start date. Using default instead (" + options.start.format("LL") + ").", "warn");
-}
-
-// Handle time range options
-if (!options.end || !options.end.isValid()) {
-    options.end = Moment();
-    Logger.log("Invalid end date. Using default instead (" + options.end.format("LL") + ").", "warn");
-}
-
-// Add the repo path
-if (authorsOpt.is_provided || globalActivityOpt.is_provided) {
-    options.repo = process.cwd();
-}
-
-// Handle authors
-if (authorsOpt.is_provided) {
-    options.no_ansi = noAnsiOpt.is_provided;
-    options.radius = (process.stdout.rows / 2) - 4;
-}
-
-if (!authorsOpt.is_provided || globalActivityOpt.is_provided) {
-    options.firstDay = firstDayOpt.value;
-    // This can be a string or an object
-    if (/^object|string$/.test(Typpy(GitStats.config.theme)) && !noAnsiOpt.is_provided && !lightOpt.is_provided) {
-        options.theme = GitStats.config.theme;
-        if (typeof GitStats.config.theme === "string") {
-            if (!/^DARK|LIGHT$/.test(options.theme)) {
-                options.theme = null;
-            }
+new Tilda(`${__dirname}/../package.json`, {
+    options: [
+        {
+            opts: ["record"]
+          , desc: "Records a new commit. Don't use this unless you are a mad scientist. If you are a developer just use this option as part of the module."
+          , name: "data"
         }
-    } else {
-        options.theme = noAnsiOpt.is_provided ? null
-                      : lightOpt.is_provided ? "LIGHT": "DARK"
-                      ;
+      , {
+            opts: ["s", "since"]
+          , desc: "Optional start date."
+          , name: "date"
+          , default: GitStats.config.since
+        }
+      , {
+            opts: ["u", "until"]
+          , desc: "Optional end date."
+          , name: "date"
+          , default: GitStats.config.until
+        }
+      , {
+            opts: ["a", "authors"]
+          , desc: "Shows a pie chart with the author related contributions in the current repository."
+        }
+      , {
+            opts: ["n", "no-ansi"]
+          , desc: "Forces the tool not to use ANSI styles."
+        }
+      , {
+            opts: ["l", "light"]
+          , desc: "Enables the light theme."
+        }
+      , {
+            opts: ["d", "data"]
+          , desc: "Sets a custom data store file."
+          , name: "path"
+          , default: GitStats.config.path
+        }
+      , {
+            opts: ["g", "global-activity"]
+          , desc: "Shows global activity calendar in the current repository."
+        }
+      , {
+            opts: ["r", "raw"]
+          , desc: "Outputs a dump of the raw JSON data."
+        }
+    ]
+  , examples: [
+        "git-stats # Default behavior (stats in the last year)"
+      , "git-stats -l # Light mode"
+      , "git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now"
+      , "git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012"
+    ]
+  , notes: "Your commit history is kept in ~/.git-stats by default. You can create ~/.git-stats-config.json to specify different defaults."
+}).main(action => {
+    debugger
+
+    let recordOpt = action.options.record
+      , sinceDateOpt = action.options.since
+      , untilDateOpt = action.options.until
+      , authorsOpt = action.options.authors
+      , noAnsiOpt = action.options.noAnsi
+      , lightOpt = action.options.light
+      , dataPathOpt = action.options.data
+      , globalActivityOpt = action.options.globalActivity
+      , rawOpt = action.options.raw
+      ;
+
+    let options = {};
+
+    // Handle data path
+    if (dataPathOpt.is_provided) {
+        GitStats.path = Abs(dataPathOpt.value);
+        GitStats.config.data_path = GitStats.path;
+        if (!IsThere(GitStats.path)) {
+            Logger.log("Cannot find the the specified data path file.", "warn");
+        }
     }
-}
 
-function display (err, data) {
-    if (err) { return Logger.log(err, "error"); }
-    if (typeof data !== "string") {
-        data = JSON.stringify(data);
+    if (GitStats.config.authors) {
+        authorsOpt.is_provided = true;
     }
-    process.stdout.write(data + "\n");
-}
 
-if (globalActivityOpt.is_provided) {
-    return GitStats.globalActivity(options, display);
-}
+    if (GitStats.config.global_activity) {
+        globalActivityOpt.is_provided = true;
+    }
 
+    // --record
+    if (recordOpt.is_provided) {
+        try {
+            options = JSON.parse(recordOpt.value.replace(/^\"|\"$/g, ""));
+        } catch (e) {
+            Logger.log(e, "error");
+            return process.exit(1);
+        }
 
-// Show the graphs
-GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, display);
+        return GitStats.record(options, function (err) {
+            if (err) { return Logger.log(err, "error"); }
+            process.exit(0);
+        });
+    }
+
+    // Create the options
+    options = {
+        start: sinceDateOpt.value ? Moment(sinceDateOpt.value) : Moment().subtract(1, "years")
+      , end: untilDateOpt.value ? Moment(untilDateOpt.value) : Moment()
+      , raw: rawOpt.is_provided
+    };
+
+    // Validate the dates
+    if (!options.start || !options.start.isValid()) {
+        options.start = Moment().subtract(1, "years");
+        Logger.log("Invalid start date. Using default instead (" + options.start.format("LL") + ").", "warn");
+    }
+
+    // Handle time range options
+    if (!options.end || !options.end.isValid()) {
+        options.end = Moment();
+        Logger.log("Invalid end date. Using default instead (" + options.end.format("LL") + ").", "warn");
+    }
+
+    // Add the repo path
+    if (authorsOpt.is_provided || globalActivityOpt.is_provided) {
+        options.repo = process.cwd();
+    }
+
+    // Handle authors
+    if (authorsOpt.is_provided) {
+        options.no_ansi = noAnsiOpt.is_provided;
+        options.radius = (process.stdout.rows / 2) - 4;
+    }
+
+    if (!authorsOpt.is_provided || globalActivityOpt.is_provided) {
+        // This can be a string or an object
+        if (/^object|string$/.test(Typpy(GitStats.config.theme)) && !noAnsiOpt.is_provided && !lightOpt.is_provided) {
+            options.theme = GitStats.config.theme;
+            if (typeof GitStats.config.theme === "string") {
+                if (!/^DARK|LIGHT$/.test(options.theme)) {
+                    options.theme = null;
+                }
+            }
+        } else {
+            options.theme = noAnsiOpt.is_provided ? null
+                          : lightOpt.is_provided ? "LIGHT": "DARK"
+                          ;
+        }
+    }
+
+    function display (err, data) {
+        if (err) { return Logger.log(err, "error"); }
+        if (typeof data !== "string") {
+            data = JSON.stringify(data);
+        }
+        process.stdout.write(data + "\n");
+    }
+
+    if (globalActivityOpt.is_provided) {
+        return GitStats.globalActivity(options, display);
+    }
+
+    // Show the graphs
+    GitStats[authorsOpt.is_provided ? "authorsPie" : "ansiCalendar"](options, display);
+});
