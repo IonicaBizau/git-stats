@@ -84,7 +84,6 @@ new Tilda(`${__dirname}/../package.json`, {
     ]
   , notes: "Your commit history is kept in ~/.git-stats by default. You can create ~/.git-stats-config.json to specify different defaults."
 }).main(action => {
-    debugger
 
     let recordOpt = action.options.record
       , sinceDateOpt = action.options.since
