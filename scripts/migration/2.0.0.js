@@ -11,8 +11,10 @@ var ReadJson = require("r-json")
 const DATA_FILE = Abs("~/.git-stats");
 
 function migrate() {
+    var data = {};
+
     try {
-        var data = ReadJson(DATA_FILE)
+        data = ReadJson(DATA_FILE)
     } catch (e) {
         if (e.code === "ENOENT") {
             return;
