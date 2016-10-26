@@ -56,7 +56,7 @@ Options:
   -u, --until <date>     Optional end date.
   -g, --global-activity  Shows global activity calendar in the current
                          repository.
-  -n, --no-ansi          Forces the tool not to use ANSI styles.
+  -n, --disable-ansi     Forces the tool not to use ANSI styles.
   -l, --light            Enables the light theme.
   -d, --data <path>      Sets a custom data store file.
   -a, --authors          Shows a pie chart with the author related
@@ -167,6 +167,33 @@ module.exports = {
 ```
 
 Since it's a js file, you can `require` any other modules there.
+
+## Saving the data as HTML and images
+
+`git-stats --raw` outputs raw JSON format which can be consumed by other tools to generate results such as HTML files or images.
+
+[`git-stats-html`](https://github.com/IonicaBizau/git-stats-html) interprets the JSON data and generates an HTML file. Example:
+
+```sh
+# Install git-stats-html
+npm install -g git-stats-html
+
+# Export the data from the last year (generate out.html)
+git-stats --raw | git-stats-html -o out.html
+
+# Export data since 2015 (save the results in out.html)
+git-stats --since '1 January 2015' --raw | ./bin/git-stats-html -o out.html --big
+```
+
+After we have the HTML file, we can generate an image file using [`pageres`](https://github.com/sindresorhus/pageres) by [**@sindresorhus**](https://github.com/sindresorhus/):
+
+```sh
+# Install pageres
+npm install -g pageres-cli
+
+# Generate the image from HTML
+pageres out.html 775x250
+```
 
 ## Cross-platform compatibility
 
