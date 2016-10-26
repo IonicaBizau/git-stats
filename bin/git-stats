@@ -54,7 +54,7 @@ new Tilda(`${__dirname}/../package.json`, {
           , desc: "Shows a pie chart with the author related contributions in the current repository."
         }
       , {
-            opts: ["n", "no-ansi"]
+            opts: ["n", "disable-ansi"]
           , desc: "Forces the tool not to use ANSI styles."
         }
       , {
