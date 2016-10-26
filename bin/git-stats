@@ -6,7 +6,6 @@ const Tilda = require("tilda")
     , Ul = require("ul")
     , Moment = require("moment")
     , Logger = require("bug-killer")
-    , Clp = require("clp")
     , Abs = require("abs")
     , Typpy = require("typpy")
     , Package = require("../package")
@@ -89,7 +88,7 @@ new Tilda(`${__dirname}/../package.json`, {
       , sinceDateOpt = action.options.since
       , untilDateOpt = action.options.until
       , authorsOpt = action.options.authors
-      , noAnsiOpt = action.options.noAnsi
+      , noAnsiOpt = action.options.disableAnsi
       , lightOpt = action.options.light
       , dataPathOpt = action.options.data
       , globalActivityOpt = action.options.globalActivity
