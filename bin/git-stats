@@ -10,6 +10,7 @@ const Tilda = require("tilda")
     , Typpy = require("typpy")
     , Package = require("../package")
     , ReadJson = require("r-json")
+    , IsThere = require("is-there")
     ;
 
 // Constants
