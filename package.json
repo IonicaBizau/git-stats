@@ -3,7 +3,7 @@
     "git-stats": "bin/git-stats"
   },
   "name": "git-stats",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "description": "Local git statistics including GitHub-like contributions calendars.",
   "main": "lib/index.js",
   "scripts": {
@@ -224,32 +224,32 @@
           "`git-stats --raw` outputs raw JSON format which can be consumed by other tools to generate results such as HTML files or images.",
           "[`git-stats-html`](https://github.com/IonicaBizau/git-stats-html) interprets the JSON data and generates an HTML file. Example:",
           {
-              "code": {
-                  "content": [
-                      "# Install git-stats-html",
-                      "npm install -g git-stats-html",
-                      "",
-                      "# Export the data from the last year (generate out.html)",
-                      "git-stats --raw | git-stats-html -o out.html",
-                      "",
-                      "# Export data since 2015 (save the results in out.html)",
-                      "git-stats --since '1 January 2015' --raw | ./bin/git-stats-html -o out.html --big"
-                  ],
-                  "language": "sh"
-              }
+            "code": {
+              "content": [
+                "# Install git-stats-html",
+                "npm install -g git-stats-html",
+                "",
+                "# Export the data from the last year (generate out.html)",
+                "git-stats --raw | git-stats-html -o out.html",
+                "",
+                "# Export data since 2015 (save the results in out.html)",
+                "git-stats --since '1 January 2015' --raw | ./bin/git-stats-html -o out.html --big"
+              ],
+              "language": "sh"
+            }
           },
           "After we have the HTML file, we can generate an image file using [`pageres`](https://github.com/sindresorhus/pageres) by [**@sindresorhus**](https://github.com/sindresorhus/):",
           {
-              "code": {
-                  "content": [
-                      "# Install pageres",
-                      "npm install -g pageres-cli",
-                      "",
-                      "# Generate the image from HTML",
-                      "pageres out.html 775x250"
-                  ],
-                  "language": "sh"
-              }
+            "code": {
+              "content": [
+                "# Install pageres",
+                "npm install -g pageres-cli",
+                "",
+                "# Generate the image from HTML",
+                "pageres out.html 775x250"
+              ],
+              "language": "sh"
+            }
           }
         ]
       },
