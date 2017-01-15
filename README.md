@@ -256,6 +256,7 @@ Thanks! :heart:
 If you are using this library in one of your projects, add it in this list. :sparkles:
 
 
+ - [`git-stats-fcc-importer`](https://github.com/cmal/git-stats-fcc-importer#readme) (by Yu Zhao)—git-stats importer for FreeCodeCamp users
  - [`git-stats-importer`](https://github.com/IonicaBizau/git-stats-importer)—Imports your commits from a repository into git-stats history.
 
 ## :scroll: License

@@ -41,8 +41,7 @@ Records a new commit.
 #### Return
 - **GitStats** The `GitStats` instance.
 
-### `record(data, callback)`
-removeCommit
+### `removeCommit(data, callback)`
 Deletes a specifc commit from the history.
 
 #### Params
