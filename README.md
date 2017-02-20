@@ -14,7 +14,7 @@ I'd be curious to see your calendar with all your commits. Ping me on Twitter ([
 
 ## Contents
 
- - [Installation](#installation)
+ - [Installation](#cloud-installation)
  - [Usage](#usage)
 
      - [Importing and deleting commits](#importing-and-deleting-commits)
