@@ -3,14 +3,14 @@
     "git-stats": "bin/git-stats"
   },
   "name": "git-stats",
-  "version": "2.10.3",
+  "version": "2.10.4",
   "description": "Local git statistics including GitHub-like contributions calendars.",
   "main": "lib/index.js",
   "scripts": {
     "test": "node test",
     "postinstall": "node scripts/migration/2.0.0.js"
   },
-  "author": "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
+  "author": "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)",
   "contributors": [
     "Gnab <as0n@gnab.fr>",
     "William Boman <william@redwill.se>",
@@ -274,12 +274,11 @@
     "bin/",
     "app/",
     "lib/",
-    "build/",
     "dist/",
     "src/",
+    "scripts/",
     "resources/",
     "menu/",
-    "scripts/",
     "cli.js",
     "index.js"
   ]
