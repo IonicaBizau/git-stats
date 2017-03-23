@@ -20,8 +20,10 @@ I'd be curious to see your calendar with all your commits. Ping me on Twitter ([
      - [Importing and deleting commits](#importing-and-deleting-commits)
      - [Importing all the commits from GitHub and BitBucket](#importing-all-the-commits-from-github-and-bitbucket)
      - [What about the GitHub Contributions calendar?](#what-about-the-github-contributions-calendar)
+
  - [Documentation](#documentation)
  - [How to contribute](#how-to-contribute)
+
 
 ## :cloud: Installation
 
@@ -173,39 +175,24 @@ Since it's a js file, you can `require` any other modules there.
 [`git-stats-html`](https://github.com/IonicaBizau/git-stats-html) interprets the JSON data and generates an HTML file. Example:
 
 ```sh
-
 # Install git-stats-html
-
 npm install -g git-stats-html
 
-
-
 # Export the data from the last year (generate out.html)
-
 git-stats --raw | git-stats-html -o out.html
 
-
-
 # Export data since 2015 (save the results in out.html)
-
 git-stats --since '1 January 2015' --raw | ./bin/git-stats-html -o out.html --big
-
 ```
 
 After we have the HTML file, we can generate an image file using [`pageres`](https://github.com/sindresorhus/pageres) by [**@sindresorhus**](https://github.com/sindresorhus/):
 
 ```sh
-
 # Install pageres
-
 npm install -g pageres-cli
 
-
-
 # Generate the image from HTML
-
 pageres out.html 775x250
-
 ```
 
 ## Cross-platform compatibility
@@ -243,6 +230,15 @@ g1.ansiCalendar({
 });
 ```
 
+## :question: Get Help
+
+There are few ways to get help:
+
+ 1. Please [post questions on Stack Overflow](https://stackoverflow.com/questions/ask). You can open issues with questions, as long you add a link to your Stack Overflow question.
+ 2. For bug reports and feature requests, open issues. :bug:
+ 3. For direct and quick help from me, you can [use Codementor](https://www.codementor.io/johnnyb). :rocket:
+
+
 ## :memo: Documentation
 
 For full API reference, see the [DOCUMENTATION.md][docs] file.
@@ -250,6 +246,7 @@ For full API reference, see the [DOCUMENTATION.md][docs] file.
 ## :newspaper: Press Highlights
 
  - [*A GitHub-like contributions calendar, but locally, with all your git commits*, The Changelog](https://changelog.com/github-like-contributions-calendar-locally-git-commits/)
+
 
 ## :yum: How to contribute
 Have an idea? Found a bug? See [how to contribute][contributing].
