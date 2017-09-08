@@ -5,6 +5,7 @@ You can see below the API reference of this module.
 ### `GitStats(dataPath)`
 
 #### Params
+
 - **String** `dataPath`: Path to the data file.
 
 #### Return
@@ -14,6 +15,7 @@ You can see below the API reference of this module.
 Fetches the configuration object from file (`~/.git-stats-config.js`).
 
 #### Params
+
 - **Function** `callback`: The callback function.
 
 #### Return
@@ -23,6 +25,7 @@ Fetches the configuration object from file (`~/.git-stats-config.js`).
 Inits the configuration field (`this.config`).
 
 #### Params
+
 - **Object|String** `input`: The path to a custom git-stats configuration file or the configuration object.
 - **Function** `callback`: The callback function.
 
@@ -30,6 +33,7 @@ Inits the configuration field (`this.config`).
 Records a new commit.
 
 #### Params
+
 - **Object** `data`: The commit data containing:
  - `date` (String|Date): The date object or a string in a format that can be parsed.
  - `url` (String): The repository remote url.
@@ -46,6 +50,7 @@ removeCommit
 Deletes a specifc commit from the history.
 
 #### Params
+
 - **Object** `data`: The commit data containing:
  - `date` (String|Date): The date object or a string in a format that can be parsed. If not provided, the hash object will be searched in all dates.
  - `hash` (String): The commit hash.
@@ -60,6 +65,7 @@ Deletes a specifc commit from the history.
 Gets the git stats.
 
 #### Params
+
 - **Function** `callback`: The callback function.
 
 #### Return
@@ -69,6 +75,7 @@ Gets the git stats.
 Saves the provided stats.
 
 #### Params
+
 - **Object** `stats`: The stats to be saved.
 - **Function** `callback`: The callback function.
 
@@ -79,6 +86,7 @@ Saves the provided stats.
 Iterate through the days, calling the callback function on each day.
 
 #### Params
+
 - **Object** `data`: An object containing the following fields:
  - `start` (Moment): A `Moment` date object representing the start date (default: *an year ago*).
  - `end` (Moment): A `Moment` date object representing the end date (default: *now*).
@@ -92,6 +100,7 @@ Iterate through the days, calling the callback function on each day.
 Creates an object with the stats on the provided period (default: *last year*).
 
 #### Params
+
 - **Object** `data`: The object passed to the `iterateDays` method.
 - **Function** `callback`: The callback function.
 
@@ -102,6 +111,7 @@ Creates an object with the stats on the provided period (default: *last year*).
 Creates the calendar data for the provided period (default: *last year*).
 
 #### Params
+
 - **Object** `data`: The object passed to the `graph` method.
 - **Function** `callback`: The callback function.
 
@@ -112,6 +122,7 @@ Creates the calendar data for the provided period (default: *last year*).
 Creates the ANSI contributions calendar.
 
 #### Params
+
 - **Object** `options`: The object passed to the `calendar` method.
 - **Function** `callback`: The callback function.
 
@@ -122,6 +133,7 @@ Creates the ANSI contributions calendar.
 Creates an array with the authors of a git repository.
 
 #### Params
+
 - **String|Object** `options`: The repo path or an object containing the following fields:
  - `repo` (String): The repository path.
 - **Function** `callback`: The callback function.
@@ -133,6 +145,7 @@ Creates an array with the authors of a git repository.
 Creates the authors pie.
 
 #### Params
+
 - **String|Object** `options`: The repo path or an object containing the following fields:
  - `repo` (String): The repository path.
  - `radius` (Number): The pie radius.
@@ -147,6 +160,7 @@ Creates the authors pie.
 Creates the global contributions calendar (all commits made by all committers).
 
 #### Params
+
 - **String|Object** `options`: The repo path or an object containing the following fields:
  - `repo` (String): The repository path.
  - `start` (String): The start date.
