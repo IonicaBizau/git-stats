@@ -65,7 +65,7 @@
       },
       {
         "ul": [
-          "[Installation](#installation)",
+          "[Installation](#cloud-installation)",
           [
             "[Usage](#usage)",
             {
@@ -76,8 +76,8 @@
               ]
             }
           ],
-          "[Documentation](#documentation)",
-          "[How to contribute](#how-to-contribute)"
+          "[Documentation](#memo-documentation)",
+          "[How to contribute](#yum-how-to-contribute)"
         ]
       }
     ],
