@@ -136,6 +136,8 @@ Creates an array with the authors of a git repository.
 
 - **String|Object** `options`: The repo path or an object containing the following fields:
  - `repo` (String): The repository path.
+ - `start` (String): The start date.
+ - `end` (String): The end date.
 - **Function** `callback`: The callback function.
 
 #### Return
