@@ -36,6 +36,7 @@ You can install the package globally and use it as command line tool:
 ```sh
 # Install the package globally
 npm i -g git-stats
+
 # Initialize git hooks
 # This is for tracking the new commits
 curl -s https://raw.githubusercontent.com/IonicaBizau/git-stats/master/scripts/init-git-post-commit | bash
@@ -241,10 +242,14 @@ Cygwin Terminal is known to work, while Windows Command Prompt and Git Bash do n
 ## :clipboard: Example
 
 
-Here is an example how to use this package as library. To install it locally, as library, you can do that using `npm`:
+Here is an example how to use this package as library. To install it locally, as library, you can do that using `npm` (or `yarn`):
 
 ```sh
-$ npm i --save git-stats
+# Using npm
+npm install --save git-stats
+
+# Using yarn
+yarn add git-stats
 ```
 
 
