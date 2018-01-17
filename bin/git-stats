@@ -85,7 +85,7 @@ new Tilda(`${__dirname}/../package.json`, {
       , "git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now"
       , "git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012"
     ]
-  , notes: "Your commit history is kept in ~/.git-stats by default. You can create ~/.git-stats-config.json to specify different defaults."
+  , notes: "Your commit history is kept in ~/.git-stats by default. You can create ~/.git-stats-config.js to specify different defaults."
 }).main(action => {
 
     let recordOpt = action.options.record
@@ -101,13 +101,8 @@ new Tilda(`${__dirname}/../package.json`, {
 
     let options = {};
 
-    // Handle data path
-    if (dataPathOpt.is_provided) {
-        GitStats.path = Abs(dataPathOpt.value);
-        GitStats.config.data_path = GitStats.path;
-        if (!IsThere(GitStats.path)) {
-            Logger.log("Cannot find the the specified data path file.", "warn");
-        }
+    if(GitStats.config.path) {
+        dataPathOpt.is_provided = true;
     }
 
     if (GitStats.config.authors) {
@@ -116,6 +111,17 @@ new Tilda(`${__dirname}/../package.json`, {
 
     if (GitStats.config.global_activity) {
         globalActivityOpt.is_provided = true;
+    }
+
+    // Handle data path
+    if (dataPathOpt.is_provided) {
+        if (IsThere(dataPathOpt.value)) {
+            GitStats.path = Abs(dataPathOpt.value);
+            GitStats.config.data_path = GitStats.path;
+        }
+        else {
+            Logger.log("Cannot find the the specified data path file.", "warn");
+        }
     }
 
     // --record
