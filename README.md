@@ -76,7 +76,7 @@ Examples:
   $ git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012
 
 Your commit history is kept in ~/.git-stats by default. You can create
-~/.git-stats-config.json to specify different defaults.
+~/.git-stats-config.js to specify different defaults.
 
 Documentation can be found at https://github.com/IonicaBizau/git-stats.
 ```
@@ -297,7 +297,7 @@ Have an idea? Found a bug? See [how to contribute][contributing].
 
 ## :sparkling_heart: Support my projects
 
-I open-source almost everything I can, and I try to reply everyone needing help using these projects. Obviously,
+I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can integrate and use these projects in your applications *for free*! You can even change the source code and redistribute (even resell it).
 
 However, if you get some profit from this or just want to encourage me to continue creating stuff, there are few ways you can do it:
@@ -317,7 +317,6 @@ Thanks! :heart:
 If you are using this library in one of your projects, add it in this list. :sparkles:
 
 
- - [`core-server`](https://github.com/SachaSkyhark/Core-Server#readme) (by Vandamme Sacha)—CoreServer
  - [`git-stats-fcc-importer`](https://github.com/cmal/git-stats-fcc-importer#readme) (by Yu Zhao)—git-stats importer for FreeCodeCamp users
  - [`git-stats-importer`](https://github.com/IonicaBizau/git-stats-importer)—Imports your commits from a repository into git-stats history.
 
