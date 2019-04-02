@@ -123,6 +123,20 @@ $ cd repository-downloader
 # Install the dependencies
 $ npm install
 
+# Enter your username and password for GitHub and BitBucket into the config.json
+$ vim config.json
+repository-downloader/config.json
+-  {                                                                                                           
+-    "github": {                                                                                             
+-        "username": "your GitHub username",                                                                 
+-        "password": "your GitHub password"                                                                  
+-    },                                                                                                      
+-    "bitbucket": {                                                                                          
+-        "username": "your BitBucket username",                                                              
+-        "password": "your BitBucket password"                                                               
+-    }                                                                                                       
+-  }    
+
 # Start downloading and importing
 $ ./start
 ```
