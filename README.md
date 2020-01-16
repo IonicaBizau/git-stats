@@ -221,7 +221,7 @@ git-stats --raw | git-stats-html -o out.html
 
 # Export data since 2015 (save the results in out.html)
 
-git-stats --since '1 January 2015' --raw | ./bin/git-stats-html -o out.html --big
+git-stats --since '1 January 2015' --raw | git-stats-html -o out.html --big
 
 ```
 
