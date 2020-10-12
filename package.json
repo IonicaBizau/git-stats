@@ -39,7 +39,7 @@
     "cli-pie": "^2.0.0",
     "deffy": "^2.2.2",
     "gitlog-parser": "0.0.4",
-    "gry": "^5.0.4",
+    "gry": "^6.1.0",
     "is-there": "^4.0.0",
     "iterate-object": "^1.1.0",
     "moment": "^2.9.0",
