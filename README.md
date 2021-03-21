@@ -99,6 +99,8 @@ Options:
   -d, --data <path>      Sets a custom data store file.
   -l, --light            Enables the light theme.
   -n, --disable-ansi     Forces the tool not to use ANSI styles.
+  -A, --author           Filter author related contributions in the current
+                         repository.
   -a, --authors          Shows a pie chart with the author related
                          contributions in the current repository.
   -u, --until <date>     Optional end date.
