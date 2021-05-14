@@ -56,6 +56,10 @@ new Tilda(`${__dirname}/../package.json`, {
             opts: ["a", "authors"]
           , desc: "Shows a pie chart with the author related contributions in the current repository."
         }
+      ,{
+            opts: ["A", "author"]
+          , desc: "Filter author related contributions in the current repository."
+        }
       , {
             opts: ["n", "disable-ansi"]
           , desc: "Forces the tool not to use ANSI styles."
@@ -96,7 +100,8 @@ new Tilda(`${__dirname}/../package.json`, {
       , lightOpt = action.options.light
       , dataPathOpt = action.options.data
       , globalActivityOpt = action.options.globalActivity
-      , rawOpt = action.options.raw
+      , rawOpt = action.options.raw,
+        authorOpt = action.options.author
       ;
 
     let options = {};
@@ -161,6 +166,11 @@ new Tilda(`${__dirname}/../package.json`, {
     // Add the repo path
     if (authorsOpt.is_provided || globalActivityOpt.is_provided) {
         options.repo = process.cwd();
+    }
+
+    // Add the author opt
+    if(authorOpt.is_provided){
+      options.author = authorOpt.value
     }
 
     // Handle authors
