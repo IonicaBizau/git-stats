@@ -100,8 +100,8 @@ new Tilda(`${__dirname}/../package.json`, {
       , lightOpt = action.options.light
       , dataPathOpt = action.options.data
       , globalActivityOpt = action.options.globalActivity
-      , rawOpt = action.options.raw,
-        authorOpt = action.options.author
+      , rawOpt = action.options.raw
+      , authorOpt = action.options.author
       ;
 
     let options = {};
