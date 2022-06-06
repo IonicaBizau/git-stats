@@ -41,7 +41,7 @@
 
 I'd be curious to see your calendar with all your commits. Ping me on Twitter ([**@IonicaBizau**](https://twitter.com/IonicaBizau)). :smile: Until then, here's my calendar:
 
-![](http://i.imgur.com/PpM0i3v.png "")
+![](http://i.imgur.com/PpM0i3v.png)
 
 ## Contents
 
@@ -400,8 +400,8 @@ Thanks! :heart:
 ## :dizzy: Where is this library used?
 If you are using this library in one of your projects, add it in this list. :sparkles:
 
- - `git-stats-fcc-importer`
  - `git-stats-importer`
+ - `git-stats-fcc-importer`
 
 
 
