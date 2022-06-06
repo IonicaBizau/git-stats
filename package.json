@@ -17,7 +17,6 @@
     "Fabian Furger <mystyfly@gmail.com>"
   ],
   "license": "MIT",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/IonicaBizau/git-stats.git"
@@ -42,7 +41,7 @@
     "gry": "^6.1.0",
     "is-there": "^4.0.0",
     "iterate-object": "^1.1.0",
-    "moment": "^2.9.0",
+    "moment": "^2.29.3",
     "r-json": "^1.0.0",
     "tilda": "^4.3.3",
     "typpy": "^2.1.0",
