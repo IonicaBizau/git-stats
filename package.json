@@ -3,7 +3,7 @@
     "git-stats": "bin/git-stats"
   },
   "name": "git-stats",
-  "version": "2.12.0",
+  "version": "3.0.0",
   "description": "Local git statistics including GitHub-like contributions calendars.",
   "main": "lib/index.js",
   "scripts": {
