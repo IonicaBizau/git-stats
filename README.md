@@ -433,3 +433,4 @@ If you are using this library in one of your projects, add it in this list. :spa
 [patreon]: https://www.patreon.com/ionicabizau
 [amazon]: http://amzn.eu/hRo9sIZ
 [paypal-donations]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RVXDDLKKLQRJW
+## Git statistics as the measurements that can be extracted from a Git repository. That wouldn't typically include metrics about pull requests (PRs), for example, since they aren't native features of Git but come from repository management services such as GitHub or GitLab.
