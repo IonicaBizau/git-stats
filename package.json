@@ -192,7 +192,7 @@
             "    // The file where the commit hashes will be stored",
             "  , \"path\": \"~/.git-stats\"",
             "",
-            "    // First day of the week",
+            "    // [DEPRECATED] First day of the week https://github.com/IonicaBizau/git-stats/issues/121"
             "  , first_day: \"Sun\"",
             "",
             "    // This defaults to *one year ago*",
