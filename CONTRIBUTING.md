@@ -1,66 +1,41 @@
-# :eight_spoked_asterisk: :stars: :sparkles: :dizzy: :star2: :star2: :sparkles: :dizzy: :star2: :star2: Contributing :star: :star2: :dizzy: :sparkles:  :star: :star2: :dizzy: :sparkles: :stars: :eight_spoked_asterisk:
+# Contributing :star: :star2: :dizzy:
 
-So, you want to contribute to this project! That's awesome. However, before
-doing so, please read the following simple steps how to contribute. This will
-make the life easier and will avoid wasting time on things which are not
-requested. :sparkles:
+So, you want to contribute to this project? That's awesome! However, before doing so, please read the following simple steps on how to contribute. This will make life easier and avoid wasting time on things that are not requested. ✨
 
-## Discuss the changes before doing them
- - First of all, open an issue in the repository, using the [bug tracker][1],
-   describing the contribution you would like to make, the bug you found or any
-   other ideas you have. This will help us to get you started on the right
-   foot.
+## Discuss the changes before making them
+To begin, open an issue in the repository using the [bug tracker][1]. Describe the contribution you'd like to make, the bug you've found, or any other ideas you have. This step will help us get you started on the right track.
 
- - If it makes sense, add the platform and software information (e.g. operating
-   system, Node.JS version etc.), screenshots (so we can see what you are
-   seeing).
+If it is relevant, include platform and software information (e.g., operating system, Node.JS version, etc.) and screenshots to help us understand what you're experiencing.
 
- - It is recommended to wait for feedback before continuing to next steps.
-   However, if the issue is clear (e.g. a typo) and the fix is simple, you can
-   continue and fix it.
+We recommend waiting for feedback before proceeding to the next steps. However, if the issue is clear, such as a typo, and the fix is simple, you can go ahead and fix it.
 
-## Fixing issues
- - Fork the project in your account and create a branch with your fix:
-   `some-great-feature` or `some-issue-fix`.
+## Fixing Issues
+Begin by forking the project to your own account, and create a branch for your fix, naming it either `some-great-feature` or `some-issue-fix`.
 
- - Commit your changes in that branch, writing the code following the
-   [code style][2]. If the project contains tests (generally, the `test`
-   directory), you are encouraged to add a test as well. :memo:
+Commit your changes to that branch, adhering to the [code style][2]. If the project includes tests (usually located in the `test` directory), we encourage you to add a test as well. :memo:
 
- - If the project contains a `package.json` or a `bower.json` file add yourself
-   in the `contributors` array (or `authors` in the case of `bower.json`;
-   if the array does not exist, create it):
+If the project includes a `package.json` or a `bower.json` file, add yourself to the `contributors` array (or `authors` in the case of `bower.json`). If the array doesn't exist, create it as shown below:
 
-   ```json
-   {
-      "contributors": [
-         "Your Name <and@email.address> (http://your.website)"
-      ]
-   }
-   ```
+```json
+{
+   "contributors": [
+      "Your Name <your@email.address> (http://your.website)"
+   ]
+}
+```
 
-## Creating a pull request
+## Creating a Pull Request
+Start by opening a pull request and make sure to reference the initial issue in the pull request message (e.g., *fixes #<your-issue-number>*). Provide a clear and descriptive title to help everyone understand what is being fixed or improved.
 
- - Open a pull request, and reference the initial issue in the pull request
-   message (e.g. *fixes #<your-issue-number>*). Write a good description and
-   title, so everybody will know what is fixed/improved.
+If applicable, consider adding screenshots, gifs, or any other visual aids that can make it easier to understand the changes you've made.
 
- - If it makes sense, add screenshots, gifs etc., so it is easier to see what
-   is going on.
+## Wait for Feedback
+Before accepting your contributions, we will review them. You may receive feedback regarding what needs to be addressed in your modified code. If so, simply continue making commits to your branch, and the pull request will be automatically updated.
 
-## Wait for feedback
-Before accepting your contributions, we will review them. You may get feedback
-about what should be fixed in your modified code. If so, just keep committing
-in your branch and the pull request will be updated automatically.
-
-## Everyone is happy!
-Finally, your contributions will be merged, and everyone will be happy! :smile:
-Contributions are more than welcome!
+## Everyone Is Happy!
+Ultimately, your contributions will be merged, and everyone will be delighted! 😄 Contributions are more than welcome!
 
 Thanks! :sweat_smile:
 
-
-
-[1]: https://github.com/IonicaBizau/git-stats/issues
-
+[1]: /issues
 [2]: https://github.com/IonicaBizau/code-style
