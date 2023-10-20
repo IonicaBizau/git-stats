@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 "use strict";
 
-process.argv.push("--color=256");
-
 const Tilda = require("tilda")
     , GitStatsLib = require("..")
     , Ul = require("ul")
