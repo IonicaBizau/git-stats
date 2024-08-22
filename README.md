@@ -114,8 +114,8 @@ Options:
 Examples:
   $ git-stats # Default behavior (stats in the last year)
   $ git-stats -l # Light mode
-  $ git-stats -s '1 January 2012' # All the commits from 1 January 2012 to now
-  $ git-stats -s '1 January 2012' -u '31 December 2012' # All the commits from 2012
+  $ git-stats -s '1 January, 2012' # All the commits from 1 January 2012 to now
+  $ git-stats -s '1 January, 2012' -u '31 December, 2012' # All the commits from 2012
 
 Your commit history is kept in ~/.git-stats by default. You can create
 ~/.git-stats-config.js to specify different defaults.
